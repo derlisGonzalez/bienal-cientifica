@@ -1,0 +1,152 @@
+<h1>
+    Listado de Proyectos</h1>
+<hr>
+
+
+<div class="row">
+    <div class="col text-right">
+        <button routerLink="/proyecto/nuevo" class="btn btn-primary">
+      <i class="fa fa-plus"></i>
+      Agregar
+    </button>
+    </div>
+</div>
+
+<!--  -->
+<table *ngIf="!cargando && proyectos.length > 0" class="table mt-3 animated fadeIn faster animated fadeIn faster">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Codigo</th>
+            <th scope="col">Autor</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Tools</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let proyecto of proyectos; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ proyecto.titulo }}</td>
+            <td>{{ proyecto.codigo }}</td>
+            <td>{{ proyecto.autor }}</td>
+            <td>{{ proyecto.estado }}</td>
+            <td class="text-right">
+                <!--  -->
+                <button class="btn btn-info mr-1" [routerLink]="['/proyecto', proyecto.id ]">
+                <i class="fa fa-pen"></i>
+                </button>
+                <!--  -->
+                <button class="btn btn-danger" (click)="borrarProyecto( proyecto, i ) ">
+                <i class="fa fa-trash"></i>
+                </button>
+
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!--  -->
+<div *ngIf="!cargando && proyectos.length === 0" class="alert alert-warning text-center mt-3 animated fadeIn faster">
+    <h4 class="alert-heading">No hay registros</h4>
+    <p>
+        <i class="fa fa-exclamation fa-2x"></i>
+    </p>
+</div>
+<!--  -->
+<div *ngIf="cargando" class="alert alert-info text-center mt-3 animated fadeIn faster">
+    <h4 class="alert-heading">Cargando</h4>
+    <p>
+        <i class="fa fa-sync-alt fa-spin fa-2x"></i>
+    </p>
+    <p class="mb-0">
+        Espere por favor
+    </p>
+</div>
+
+
+
+
+
+
+<!-- Ejemplo -->
+
+
+
+
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Médico</h4>
+                <h6 class="card-subtitle">Actualizar información</h6>
+
+                <!-- <form class="form-horizontal p-t-20" [formGroup]="disertanteForm" (submit)="guardarDisertante()">
+
+                    <div class="form-group row" *ngIf="medicoSeleccionado">
+                        <label for="exampleInputuname3" class="col-sm-3 control-label">Foto</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <img [src]="medicoSeleccionado.img | imagen: 'medicos'" class="w200" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="exampleInputuname3" class="col-sm-3 control-label">Nombre</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-user"></i></div>
+                                <input type="text" formControlName="nombre" class="form-control" id="exampleInputuname3" placeholder="Nombre del médico">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="exampleInputEmail3" class="col-sm-3 control-label">Hospital</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <select class="form-control" formControlName="hospital">
+                                    <option value="">Seleccione Hospital</option>
+                                    <option *ngFor="let hospital of hospitales"
+                                        [value]="hospital._id">
+                                        {{ hospital.nombre }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row m-b-0">
+                        <div class="offset-sm-3 col-sm-9">
+                            <button type="submit" [disabled]="medicoForm.invalid" class="btn btn-success waves-effect waves-light">
+                                <i class="fa fa-save"></i>
+                                Guardar
+                            </button>
+                        </div>
+                    </div>
+                </form> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="col animated fadeIn fast" *ngIf="hospitalSeleccionado"></div> -->
+    <div class="col animated fadeIn fast" *ngIf="">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Hospital</h4>
+                <h6 class="card-subtitle">Nombre</h6>
+                <!-- <h6 class="card-subtitle">{{ hospitalSeleccionado.nombre }}</h6> -->
+
+                <!-- <img [src]="hospitalSeleccionado.img | imagen:'hospitales'" class="img-thumbnail" /> -->
+
+            </div>
+        </div>
+
+    </div>
+</div>

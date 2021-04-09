@@ -1,0 +1,43 @@
+<div class="container">
+
+
+    <div>
+
+        <h1>Inicio</h1>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Carreras</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Categorias</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Disertantes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Evaluador</a>
+            </li>
+        </ul>
+    </div>
+
+
+
+    <div class="card-columns">
+
+        <div *ngFor="let proyecto of proyectos; let i = index" class="card" style="width: 18rem;">
+
+            <div class="card-body">
+                <h1>{{ proyecto.autor }}</h1>
+                <h5 class="card-title">{{ proyecto.titulo }}</h5>
+                <p class="card-text">{{ proyecto.id }}</p>
+                <p class="btn btn-primary">{{ proyecto.estado }}</p>
+
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>

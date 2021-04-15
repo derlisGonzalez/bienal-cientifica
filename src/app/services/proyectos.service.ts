@@ -3,6 +3,7 @@ import { ProyectoModel } from '../models/proyecto.model';
 import { DisertanteModel } from '../models/disertante.model';
 import { HttpClient } from '@angular/common/http';
 import { map, delay } from 'rxjs/operators';
+import { CriterioModel } from '../models/criterio.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class ProyectosService {
   
   proyecto: ProyectoModel;
   disertante: DisertanteModel;
+  criterio: CriterioModel;
 
   private url = 'https://angular-crud-66c73.firebaseio.com';
 

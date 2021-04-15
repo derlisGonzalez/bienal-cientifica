@@ -28,12 +28,41 @@
         <form (ngSubmit)="guardar( f )" #f="ngForm">
 
             
-            <div class="form-group text-center">
+            <div class="text-center">
                 <h2 class="text-center">Criterios a evaluar</h2>
                 <hr>
+                
                 <div *ngFor="let criterio of criterios">
-                    <p  >{{ criterio.descripcion | uppercase }}</p>
-                    <div>
+
+                    <div class="form-group">
+                        <label [(ngModel)]="proyecto.criterios"  name="criterio" required>{{ criterio.descripcion }}</label>
+                        <br>
+                   
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" >
+                            <label class="form-check-label" for="flexRadioDefault1">
+                            0
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                            <label class="form-check-label" for="flexRadioDefault2">
+                            1
+                            </label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked>
+                            <label class="form-check-label" for="flexRadioDefault3">
+                            2
+                            </label>
+                        </div>
+
+                    </div>
+                    
+
+                    <!-- <div>
                         <div class="form-check form-check-inline">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">0</label>  
@@ -47,7 +76,7 @@
                             <label class="form-check-label" for="exampleCheck1">2</label>  
                         </div>
 
-                    </div>
+                    </div> -->
                     <hr>
                                    
                  </div>
@@ -84,18 +113,3 @@
 
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

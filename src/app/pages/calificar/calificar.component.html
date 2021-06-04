@@ -1,13 +1,12 @@
 <div style="background-color: azure;">
     <h1>
-        Calificar: <small>{{ proyecto.titulo | uppercase }}</small> 
+        Calificar: <small>{{ proyecto.titulo }}</small>
     </h1>
     <hr>
     <h2>
-        Codigo: <small>{{ proyecto.codigo | uppercase }}</small> 
+        Codigo: <small>{{ proyecto.codigo }}</small>
     </h2>
     <hr>
-
 </div>
 
 
@@ -20,25 +19,21 @@
     </div>
 </div>
 
-
-
 <div class="row animated fadeIn faster">
     <div class="col">
         <!-- se llama al metodo guardar de proyecto.componet.ts -->
         <form (ngSubmit)="guardar( f )" #f="ngForm">
 
-            
             <div class="text-center">
                 <h2 class="text-center">Criterios a evaluar</h2>
                 <hr>
                 
                 <div *ngFor="let criterio of criterios">
 
-                    <div class="form-group">
-                        <label [(ngModel)]="proyecto.criterios"  name="criterio" required>{{ criterio.descripcion }}</label>
+                    <!-- <div class="form-group">
+                        <label [(ngModel)]="proyecto.criterio" name="criterio" required>{{ criterio.descripcion }}</label>
                         <br>
                    
-
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" >
                             <label class="form-check-label" for="flexRadioDefault1">
@@ -59,35 +54,33 @@
                             </label>
                         </div>
 
-                    </div>
-                    
+                    </div> -->
 
-                    <!-- <div>
-                        <div class="form-check form-check-inline">
+                    <div class="form group">
+                        <label [(ngModel)]="proyecto.criterio" name="criterios" required>{{ criterio.descripcion }}</label>
+
+                        <div class="form-check form-check-inline"><br>
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">0</label>  
                         </div>
                         <div class="form-check form-check-inline">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck2">
                             <label class="form-check-label" for="exampleCheck1">1</label>  
                         </div>
                         <div class="form-check form-check-inline">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck3">
                             <label class="form-check-label" for="exampleCheck1">2</label>  
                         </div>
 
-                    </div> -->
+                    </div>
+
                     <hr>
                                    
                  </div>
                  
-                
-                
             </div>
 
             <hr>
-
-            
 
             <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary w-25">

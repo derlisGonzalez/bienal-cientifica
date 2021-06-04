@@ -60,6 +60,18 @@ export class ProyectosService {
   }
 
 
+  realizarVotacion( proyecto: ProyectoModel ){
+
+    const proyectoTemp = {
+      ...proyecto
+    };
+
+    delete proyectoTemp.id;
+
+    return this.http.put(`${ this.url }/proyectos/${ proyecto.id }.json`, proyectoTemp);
+  }
+
+
   borrarProyecto( id: string ) {
 
     return this.http.delete(`${ this.url }/proyectos/${ id }.json`);
@@ -70,6 +82,16 @@ export class ProyectosService {
 
     return this.http.get(`${ this.url }/proyectos/${ id }.json`);
 
+  }
+
+
+  obtenerMedicoPorId( id: string ) {
+
+    //const url = `${ base_url }/medicos/${ id }`;
+    //return this.http.get( url, this.headers )
+            //  .pipe(
+            //    map( (resp: {ok: boolean, medico: Medico }) => resp.medico )
+             // );
   }
 
 
@@ -89,7 +111,7 @@ export class ProyectosService {
     );
   }
 
-  private crearArreglo( proyectosObj: object ) {
+  public crearArreglo( proyectosObj: object ) {
 
     const proyectos: ProyectoModel[] = [];
 

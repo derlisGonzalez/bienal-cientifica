@@ -15,6 +15,8 @@ import { ProyectosService } from 'src/app/services/proyectos.service';
 export class CalificarComponent implements OnInit {
 
   public criterios: CriterioModel[] = [];
+
+
   //public carreras: CarreraModel[] = [];
   public criterioSeleccionado: CriterioModel;
   //public carreraSeleccionada: CarreraModel;
@@ -72,6 +74,48 @@ export class CalificarComponent implements OnInit {
         })*/
   }
 
+  guardarVotacion( form: NgForm ) {
+
+    if ( form.invalid ) {
+      console.log('Formulario no válido');
+      return;
+    }
+
+    /*Swal.fire({
+      title: 'Espere',
+      text: 'Guardando información',
+      type: 'info',
+      allowOutsideClick: false
+    });*/
+
+    //Swal.showLoading();
+
+    let peticion: Observable<any>;
+
+    if ( this.proyecto.id ) {
+      //se agrega los los crierios en el proyecto sin las alificaciones
+      //this.proyecto.evaluadores = this.eva
+      peticion = this.proyectosService.crearProyecto( this.proyecto );
+
+    } else {
+      peticion = this.proyectosService.crearProyecto(this.proyecto );
+    }
+
+
+    peticion.subscribe( resp => {
+
+    /*Swal.fire({
+      title: this.carrera.descripcion,
+      text: 'Se actualizó correctamente',
+      type: 'success'
+    });*/
+
+    });
+
+    console.log(form);
+    console.log(this.proyecto);
+
+  }
 
 
 
@@ -94,7 +138,10 @@ export class CalificarComponent implements OnInit {
     let peticion: Observable<any>;
 
     if ( this.proyecto.id ) {
+      //se agrega los los crierios en el proyecto sin las alificaciones
+      //this.proyecto.evaluadores = this.eva
       peticion = this.proyectosService.actualizarProyecto( this.proyecto );
+
     } else {
       peticion = this.proyectosService.crearProyecto(this.proyecto );
     }

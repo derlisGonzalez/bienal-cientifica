@@ -26,6 +26,8 @@ export class InicioComponent implements OnInit {
   }
 
 
+  aleatorio = Math.random();
+
   borrarProyecto( proyecto: ProyectoModel, i: number ) {
 
     /*Swal.fire({

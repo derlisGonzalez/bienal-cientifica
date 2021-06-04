@@ -61,6 +61,15 @@ export class EvaluadoresService {
     );
   }
 
+  //CODIGO DE EJEMPLO
+  /*
+  saveUserBucketListInDb(bucketListItems: Array<object> ) {
+
+    this.angularFireDb.object('/bucketList/' + uid).set({
+      bucketListItems
+    });
+  }*/
+
   private crearArreglo( evaluadoresObj: object ) {
 
     const evaluadores: EvaluadorModel[] = [];

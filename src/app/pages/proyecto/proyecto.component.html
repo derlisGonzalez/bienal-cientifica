@@ -6,9 +6,9 @@
 <div class="row text-right">
     <div class="col">
         <button class="btn btn-danger" routerLink="/proyectos">
-      <i class="fa fa-arrow-left"></i>
-      Regresar
-    </button>
+        <i class="fa fa-arrow-left"></i>
+        Regresar
+        </button>
     </div>
 </div>
 
@@ -17,38 +17,56 @@
 <div class="row animated fadeIn faster">
     <div class="col">
         <!-- se llama al metodo guardar de proyecto.componet.ts -->
-        <form (ngSubmit)="guardar( f )" #f="ngForm">
+        <form [formGroup]="forma" (ngSubmit)="guardar()" >
 
             <div class="form-group">
                 <label>Firebase ID</label>
-                <input type="text" class="form-control" placeholder="Firebase ID" [(ngModel)]="proyecto.id" name="id" disabled="disabled">
+                <input class="form-control"
+                       type="text"
+                       placeholder="Firebase ID"
+                       [(ngModel)]="proyecto.id"
+                       [attr.disabled]="true"
+                       formControlName="id">
                 <small class="form-text text-muted">Este campo es autogenerado</small>
             </div>
 
 
             <div class="form-group">
                 <label>Titulo</label>
-                <input type="text" class="form-control" placeholder="Titulo del Proyecto" [(ngModel)]="proyecto.titulo" name="titulo" required>
+                <input class="form-control"
+                       type="text"
+                       placeholder="Titulo del Proyecto"
+                       [(ngModel)]="proyecto.titulo"
+                       formControlName="titulo">
             </div>
 
 
             <div class="form-group">
                 <label>Codigo</label>
-                <input type="text" class="form-control" placeholder="Codigo del Proyecto" [(ngModel)]="proyecto.codigo" name="codigo" required>
+                <input class="form-control"
+                       type="text"
+                       placeholder="Codigo del Proyecto"
+                       [(ngModel)]="proyecto.codigo"
+                       formControlName="codigo">
             </div>
 
 
             <div class="form-group row">
                 <label class="col-2 col-form-label">Disertante</label>
-                <div class="col-8" placeholder="Seleccione Disertante">
-
-                    <select class="form-control" [disabled]="disertantes.length === 0" [(ngModel)]="proyecto.autor" name="autor" required>
-                    <option *ngFor="let autor of disertantes"
-                            [value]="autor.nombre">
+                <div class="col-8">
+                    <div class="input-group">
+                        <select class="form-control"
+                            [(ngModel)]="proyecto.autor"
+                            formControlName="disertante">
+                            <option *ngFor="let autor of disertantes"
+                                    [value]="autor.nombre">
                             <!-- [value]="carrera.id"> -->
-                      {{ autor.nombre }}
+                            {{ autor.nombre }}
                     </option>
                   </select>
+                    </div>
+
+                    
 
                 </div>
             </div>
@@ -56,7 +74,11 @@
 
             <div class="form-group">
                 <label>Cuerpo</label>
-                <textarea type="text" class="form-control" placeholder="Cuerpo del Proyecto" [(ngModel)]="proyecto.cuerpo" name="cuerpo" required></textarea>
+                <textarea class="form-control"
+                          type="text"
+                          placeholder="Cuerpo del Proyecto"
+                          [(ngModel)]="proyecto.cuerpo"
+                          formControlName="cuerpo"></textarea>
             </div>
 
 
@@ -96,7 +118,9 @@
 
             <hr>
             <div class="form-group text-center">
-                <button type="submit" class="btn btn-primary w-25">
+                <button type="submit"
+                        
+                        class="btn btn-primary w-25">
                     <i class="fa fa-save"></i>
                     Guardar
                 </button>
@@ -104,6 +128,21 @@
 
 
         </form>
+
+
+
+        <hr>
+        <pre>
+        Estado del formulario: {{ forma.valid }}
+        <br>
+        Status: {{ forma.status }}
+        </pre>
+
+        <pre>
+
+        {{ forma.value | json }}
+
+        </pre>
 
 
     </div>

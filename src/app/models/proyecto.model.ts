@@ -15,8 +15,8 @@ export class ProyectoModel {
     //se agraga uno o mas evaluadores
     evaluadores?: EvaluadorModel[];
 
-   // criterios?: CriterioModel[];
-    criterios?: string; // se crea un array para cargar todos los criterios
+   criterios?: CriterioModel[];
+    //criterios?: string; // se crea un array para cargar todos los criterios
     
 
 }

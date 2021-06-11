@@ -32,7 +32,7 @@ export class ProyectoComponent implements OnInit {
                private route: ActivatedRoute) { 
 
                  this.crearFormulario();
-                 this.criteriosService.getCriterios();
+                 //this.criteriosService.getCriterios();
 
                }
 
@@ -40,7 +40,7 @@ export class ProyectoComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
 
     
-    console.log(this.criterios.values);
+    //console.log(this.criterios.values);
     if ( id !== 'nuevo' ) {
 
       this.proyectosService.getProyecto( id )
@@ -123,17 +123,36 @@ export class ProyectoComponent implements OnInit {
       //usuario : ['', , this.validadores.existeUsuario ],
       //pass1   : ['', Validators.required ],
       //pass2   : ['', Validators.required ],
-      
       criterios: this.fb.group({
+
+        el_expositor_seadecua_al_tiempo_estipulado: this.fb.group({
+          p1: [0, Validators.required ],
+          p2: [0, Validators.required ],
+          p3: [0, Validators.required ],
+        }),
         
-        p1: ['', Validators.required ],
-        
+
       }),
+      criterioss: this.fb.array([
+        
+       
+        
+        this.initCriterios()
+        
+      ]),
       //pasatiempos: this.fb.array([])
     },{
       //validators: this.validadores.passwordsIguales('pass1','pass2')
     });
 
+  }
+
+  initCriterios() {
+    return this.fb.group({
+      
+      name: ['', Validators.required],
+      manufacturerName: ['', Validators.required]
+    })
   }
 
 

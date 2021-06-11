@@ -17,8 +17,12 @@ export class ProyectosService {
 
   private url = 'https://angular-crud-66c73.firebaseio.com';
 
-  constructor( private http: HttpClient ) { }
+  constructor( private http: HttpClient ) { 
 
+    //this.getProyectos();
+  }
+
+  
   
 
   /*crearDisertante( disertante: {disertante: DisertanteModel, categoria: CategoriaModel} ) {

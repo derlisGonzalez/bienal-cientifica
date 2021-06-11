@@ -82,6 +82,9 @@
             </div>
 
 
+            
+
+
             <!-- 
             <div class="form-group row">
                 <label class="col-2 col-form-label">Categoria</label>
@@ -115,6 +118,16 @@
                     </div>
                 </div>
             </div> -->
+
+            <div class="form-group">
+                <label *ngFor="let criterio of criterios" class="form-control"
+                       type="text"
+                       [formControlName]="criterios"
+                       [(ngModel)]="proyecto.criterios">
+                       {{criterio.descripcion}}
+                    </label>
+                
+            </div>
 
             <hr>
             <div class="form-group text-center">

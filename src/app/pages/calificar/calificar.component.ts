@@ -163,13 +163,4 @@ export class CalificarComponent implements OnInit {
   }
 
 
-  /*cargarDisertantes() {
-
-    this.disertantesService.getDisertantes()
-      .subscribe( (disertantes: DisertanteModel[]) => {
-        this.disertantes = disertantes;
-      })
-
-  }*/
-
 }

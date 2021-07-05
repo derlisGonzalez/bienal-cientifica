@@ -20,10 +20,10 @@
         <form [formGroup]="forma" (ngSubmit)="guardar()" >
 
             <div class="form-group">
-                <label>Firebase ID</label>
+                <label>ID</label>
                 <input class="form-control"
                        type="text"
-                       placeholder="Firebase ID"
+                       placeholder="ID"
                        [(ngModel)]="proyecto.id"
                        [attr.disabled]="true"
                        formControlName="id">
@@ -119,15 +119,7 @@
                 </div>
             </div> -->
 
-            <div class="form-group">
-                <label *ngFor="let criterio of criterios" class="form-control"
-                       type="text"
-                       [formControlName]="criterios"
-                       [(ngModel)]="proyecto.criterios">
-                       {{criterio.descripcion}}
-                    </label>
-                
-            </div>
+
 
             <hr>
             <div class="form-group text-center">
@@ -142,7 +134,13 @@
 
         </form>
 
-
+        <!-- <div class="form-group">
+            <label *ngFor="let criterio of proyecto.criterios" class="form-control"
+                   type="text">
+                   {{criterio.descripcion}}
+                </label>
+            
+        </div> -->
 
         <hr>
         <pre>
@@ -157,6 +155,11 @@
 
         </pre>
 
+        <pre>
+
+            {{ proyecto | json }}
+    
+        </pre>
 
     </div>
 </div>

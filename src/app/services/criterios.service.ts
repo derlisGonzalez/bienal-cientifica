@@ -60,7 +60,7 @@ export class CriteriosService {
   }
 
 
-  private crearArreglo( criteriosObj: object ) {
+  private crearArreglo( criteriosObj: CriterioModel ) {
 
     const criterios: CriterioModel[] = [];
 

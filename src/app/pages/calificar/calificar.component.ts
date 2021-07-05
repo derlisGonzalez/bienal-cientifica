@@ -12,6 +12,8 @@ import { ProyectosService } from 'src/app/services/proyectos.service';
   templateUrl: './calificar.component.html',
   styleUrls: ['./calificar.component.css']
 })
+
+
 export class CalificarComponent implements OnInit {
 
   public criterios: CriterioModel[] = [];
@@ -20,13 +22,14 @@ export class CalificarComponent implements OnInit {
   //public carreras: CarreraModel[] = [];
   public criterioSeleccionado: CriterioModel;
   //public carreraSeleccionada: CarreraModel;
-  proyecto: ProyectoModel = new ProyectoModel();
+  public proyecto: ProyectoModel = new ProyectoModel();
 
   constructor( private proyectosService: ProyectosService,
                private criteriosService: CriteriosService,
                private route: ActivatedRoute) { }
 
   ngOnInit() {
+    let valorTotal = this.proyecto.totalPuntaje;
     const id = this.route.snapshot.paramMap.get('id');
 
     if ( id !== 'nuevo' ) {
@@ -162,5 +165,14 @@ export class CalificarComponent implements OnInit {
 
   }
 
+
+  /*cargarDisertantes() {
+
+    this.disertantesService.getDisertantes()
+      .subscribe( (disertantes: DisertanteModel[]) => {
+        this.disertantes = disertantes;
+      })
+
+  }*/
 
 }

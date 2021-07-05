@@ -14,9 +14,9 @@
 <div class="row text-right">
     <div class="col">
         <button class="btn btn-danger" routerLink="/calificaciones">
-      <i class="fa fa-arrow-left"></i>
-      Regresar
-    </button>
+            <i class="fa fa-arrow-left"></i>
+            Regresar
+        </button>
     </div>
 </div>
 
@@ -25,15 +25,59 @@
         <!-- se llama al metodo guardar de proyecto.componet.ts -->
         <form (ngSubmit)="guardar( f )" #f="ngForm">
 
-            <div class="text-center">
+            <div class="text-left">
                 <h2 class="text-center">Criterios a evaluar</h2>
                 <hr>
-                
-                <div *ngFor="let criterio of criterios">
+
+                <div *ngFor="let criterio of proyecto.criterios">
+
+                    <!-- <div class="form-group">
+                        <label [(ngModel)]="proyecto.criterio" name="criterio" required>{{ criterio.descripcion }}</label>
+                        <br>
+                   
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" >
+                            <label class="form-check-label" for="flexRadioDefault1">
+                            0
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                            <label class="form-check-label" for="flexRadioDefault2">
+                            1
+                            </label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked>
+                            <label class="form-check-label" for="flexRadioDefault3">
+                            2
+                            </label>
+                        </div>
+
+                    </div> -->
 
                     <div class="form group">
-                        <label [(ngModel)]="proyecto.criterio" name="criterios" required>{{ criterio.descripcion }}</label>
-
+                        <label [(ngModel)]="proyecto.criterio" name="criterios" required>{{ criterio.descripcion }}
+                            {{criterio.puntajeAsignado}}</label>
+                        <div class="text-right">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions{{criterio.id}}"
+                                    id="radio_0{{criterio.id}}" value=0 [(ngModel)]="criterio.puntajeAsignado">
+                                <label class="form-check-label" for="radio_0{{criterio.id}}">0</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions{{criterio.id}}"
+                                    id="radio_1{{criterio.id}}" value=1 [(ngModel)]="criterio.puntajeAsignado">
+                                <label class="form-check-label" for="radio_1{{criterio.id}}">1</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions{{criterio.id}}"
+                                    id="radio_2{{criterio.id}}" value=2 [(ngModel)]="criterio.puntajeAsignado">
+                                <label class="form-check-label" for="radio_2{{criterio.id}}">2</label>
+                            </div>
+                        </div>
+                        <!--
                         <div class="form-check form-check-inline"><br>
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">0</label>  
@@ -45,14 +89,13 @@
                         <div class="form-check form-check-inline">
                             <input type="checkbox" class="form-check-input" id="exampleCheck3">
                             <label class="form-check-label" for="exampleCheck1">2</label>  
-                        </div>
-
+                        </div> -->
                     </div>
 
                     <hr>
-                                   
-                 </div>
-                 
+
+                </div>
+
             </div>
 
             <hr>
@@ -70,14 +113,18 @@
         <div class="row text-right">
             <div class="col">
                 <button class="btn btn-danger" routerLink="/calificaciones">
-            <i class="fa fa-arrow-left"></i>
-            Regresar
-            </button>
+                    <i class="fa fa-arrow-left"></i>
+                    Regresar
+                </button>
             </div>
-            
+
         </div>
         <br>
 
+        <pre>
+        {{proyecto | json}}
+
+        </pre>
 
     </div>
 </div>

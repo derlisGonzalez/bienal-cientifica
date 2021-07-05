@@ -18,12 +18,14 @@ export class ProyectoComponent implements OnInit {
 
   forma: FormGroup;
 
+  
   public criterios: CriterioModel[] = [];
   public disertantes: DisertanteModel[] = [];
   //public carreras: CarreraModel[] = [];
   public disertanteSeleccionado: DisertanteModel;
   //public carreraSeleccionada: CarreraModel;
   proyecto: ProyectoModel = new ProyectoModel();
+  
 
   constructor( private fb: FormBuilder,
                private proyectosService: ProyectosService,
@@ -31,12 +33,15 @@ export class ProyectoComponent implements OnInit {
                private disertantesService: DisertantesService,
                private route: ActivatedRoute) { 
 
-                 this.crearFormulario();
-                 //this.criteriosService.getCriterios();
+                this.crearFormulario();
+                //this.criteriosService.getCriterios();
 
                }
 
   ngOnInit() {
+
+    
+    let valorTotal = this.proyecto.totalPuntaje;
     const id = this.route.snapshot.paramMap.get('id');
 
     
@@ -69,7 +74,15 @@ export class ProyectoComponent implements OnInit {
 
     this.criteriosService.getCriterios()
     .subscribe( criterios => {
-      this.criterios = criterios;
+      if(!this.proyecto.id){
+        this.proyecto.criterios = criterios
+        this.setValorDefault(this.proyecto)
+      }
+      //this.setValorDefault(this.proyecto) // crear un valor default para puntajeAsignado
+                                          // puede ser opcional porque
+                                          //se puede guardar sin el valor y cargar unicamente en la hora de 
+                                          //calificar ya que el modelo de la base de datos es flexible
+    
 
       /*this.criterios.unshift({
         descripcion: '',
@@ -110,7 +123,15 @@ export class ProyectoComponent implements OnInit {
     document.getElementById('listado').innerText = lista;
   }*/
 
+  setValorDefault(proyecto: ProyectoModel){
+    proyecto.criterios.forEach(criterio => {
+      criterio.puntajeAsignado = 0
+    });
+  }
 
+  setValorTotal(proyecto: ProyectoModel){
+    
+  }
 
   crearFormulario() {
     this.forma = this.fb.group({
@@ -123,7 +144,7 @@ export class ProyectoComponent implements OnInit {
       //usuario : ['', , this.validadores.existeUsuario ],
       //pass1   : ['', Validators.required ],
       //pass2   : ['', Validators.required ],
-      criterios: this.fb.group({
+     /* criterios: this.fb.group({
 
         el_expositor_seadecua_al_tiempo_estipulado: this.fb.group({
           p1: [0, Validators.required ],
@@ -139,7 +160,7 @@ export class ProyectoComponent implements OnInit {
         
         this.initCriterios()
         
-      ]),
+      ]),*/
       //pasatiempos: this.fb.array([])
     },{
       //validators: this.validadores.passwordsIguales('pass1','pass2')
@@ -149,7 +170,6 @@ export class ProyectoComponent implements OnInit {
 
   initCriterios() {
     return this.fb.group({
-      
       name: ['', Validators.required],
       manufacturerName: ['', Validators.required]
     })

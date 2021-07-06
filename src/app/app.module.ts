@@ -30,6 +30,9 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { BreadcrumbsComponent } from './shared/breadcrumbs/breadcrumbs.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { HeaderComponent } from './shared/header/header.component';
+import { ReporteProyectoComponent } from './reportes/reporte-proyecto/reporte-proyecto.component';
+import { ReporteDisertanteComponent } from './reportes/reporte-disertante/reporte-disertante.component';
+import { VisualizarProyectoComponent } from './reportes/reporte-proyecto/visualizar-proyecto/visualizar-proyecto.component';
 
 
 
@@ -59,6 +62,9 @@ import { HeaderComponent } from './shared/header/header.component';
     BreadcrumbsComponent,
     SidebarComponent,
     HeaderComponent,
+    ReporteProyectoComponent,
+    ReporteDisertanteComponent,
+    VisualizarProyectoComponent,
   ],
   imports: [
     BrowserModule,

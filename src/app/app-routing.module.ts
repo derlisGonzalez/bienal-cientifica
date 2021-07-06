@@ -19,6 +19,8 @@ import { InicioComponent } from './pages/inicio/inicio.component';
 import { ModalCalificarComponent } from './components/modal-calificar/modal-calificar.component';
 import { CalificarComponent } from './pages/calificar/calificar.component';
 import { AuthRoutingModule } from './auth/auth.routing';
+import { ReporteProyectoComponent } from './reportes/reporte-proyecto/reporte-proyecto.component';
+import { VisualizarProyectoComponent } from './reportes/reporte-proyecto/visualizar-proyecto/visualizar-proyecto.component';
 
 
 const routes: Routes = [
@@ -45,6 +47,10 @@ const routes: Routes = [
 
   { path: 'calificar', component: ModalCalificarComponent },
   { path: 'calificar/:id', component: ModalCalificarComponent },
+
+  //REPORTES
+  { path: 'lista-proyectos', component: ReporteProyectoComponent },
+  { path: 'proyecto-pdf/:id', component: VisualizarProyectoComponent },
 
   { path: 'inicio', component: InicioComponent },
 

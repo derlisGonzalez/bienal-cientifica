@@ -31,32 +31,6 @@
 
                 <div *ngFor="let criterio of proyecto.criterios">
 
-                    <!-- <div class="form-group">
-                        <label [(ngModel)]="proyecto.criterio" name="criterio" required>{{ criterio.descripcion }}</label>
-                        <br>
-                   
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" >
-                            <label class="form-check-label" for="flexRadioDefault1">
-                            0
-                            </label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                            <label class="form-check-label" for="flexRadioDefault2">
-                            1
-                            </label>
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked>
-                            <label class="form-check-label" for="flexRadioDefault3">
-                            2
-                            </label>
-                        </div>
-
-                    </div> -->
-
                     <div class="form group">
                         <label [(ngModel)]="proyecto.criterio" name="criterios" required>{{ criterio.descripcion }}
                             {{criterio.puntajeAsignado}}</label>

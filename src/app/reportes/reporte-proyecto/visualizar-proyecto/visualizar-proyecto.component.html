@@ -112,6 +112,10 @@
             <div class="form-group text-center">
                 
                 <h1>Total =</h1>
+                <div class="form-group">
+                    <label *ngFor="let proyecto of proyectos; let i = index">
+                        {{proyecto.criterios.index.value}}</label>
+                </div>
                 
             </div>
 

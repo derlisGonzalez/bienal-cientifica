@@ -11,6 +11,9 @@ export class ProyectoModel {
     autor2?: string;
     estado?: boolean = false;
     totalPuntaje?: number;
+    evaluador1?: string[];
+    evaluador2?: string;
+    evaluador3?: string;
 
     //lista de evaluadores
     //se agraga uno o mas evaluadores

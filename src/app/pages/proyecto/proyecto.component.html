@@ -72,6 +72,67 @@
             </div>
 
 
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Evaluador 1</label>
+                <div class="col-8">
+                    <div class="input-group">
+                        <select class="form-control"
+                            [(ngModel)]="proyecto.evaluador1"
+                            formControlName="evaluador1">
+                            <option *ngFor="let evaluador of evaluadores"
+                                    [value]="evaluador.nombre">
+                            <!-- [value]="carrera.id"> -->
+                            {{ evaluador.nombre }}
+                    </option>
+                  </select>
+                    </div>
+
+                    
+
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Evaluador 2</label>
+                <div class="col-8">
+                    <div class="input-group">
+                        <select class="form-control"
+                            [(ngModel)]="proyecto.evaluador2"
+                            formControlName="evaluador2">
+                            <option *ngFor="let evaluador of evaluadores"
+                                    [value]="evaluador.nombre">
+                            <!-- [value]="carrera.id"> -->
+                            {{ evaluador.nombre }}
+                    </option>
+                  </select>
+                    </div>
+
+                    
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Evaluador 3</label>
+                <div class="col-8">
+                    <div class="input-group">
+                        <select class="form-control"
+                            [(ngModel)]="proyecto.evaluador3"
+                            formControlName="evaluador3">
+                            <option *ngFor="let evaluador of evaluadores"
+                                    [value]="evaluador.nombre">
+                            <!-- [value]="carrera.id"> -->
+                            {{ evaluador.nombre }}
+                    </option>
+                  </select>
+                    </div>
+
+                    
+
+                </div>
+            </div>
+
+
             <div class="form-group">
                 <label>Cuerpo</label>
                 <textarea class="form-control"

@@ -10,7 +10,6 @@
     <hr>
 </div>
 
-
 <div class="row text-right">
     <div class="col">
         <button class="btn btn-danger" routerLink="/calificaciones">
@@ -30,7 +29,6 @@
                 <hr>
 
                 <div *ngFor="let criterio of proyecto.criterios">
-
                     <div class="form group">
                         <label [(ngModel)]="proyecto.criterio" name="criterios" required>{{ criterio.descripcion }}
                             {{criterio.puntajeAsignado}}</label>
@@ -65,23 +63,16 @@
                             <label class="form-check-label" for="exampleCheck1">2</label>  
                         </div> -->
                     </div>
-
                     <hr>
-
                 </div>
-
             </div>
-
             <hr>
-
             <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary w-25">
                     <i class="fa fa-save"></i>
                     Guardar
                 </button>
             </div>
-
-
         </form>
 
         <div class="row text-right">

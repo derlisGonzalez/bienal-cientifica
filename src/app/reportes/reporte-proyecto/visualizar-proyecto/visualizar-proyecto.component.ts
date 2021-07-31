@@ -39,12 +39,13 @@ export class VisualizarProyectoComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.proyectosService.getProyectos());
-    
+    //this.proyectos = resp[Object.keys(resp)[index]].category;
     this.cargando = true;
 
     this.proyectosService.getProyectos()
       .subscribe(resp => {
         console.log(resp);
+        //this.proyectos = resp[Object.keys(resp)[this.proyecto.totalPuntaje]].totalPuntaje;
         this.proyectos = resp;
         this.cargando = false;
       });

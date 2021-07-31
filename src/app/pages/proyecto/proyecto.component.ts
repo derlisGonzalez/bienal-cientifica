@@ -8,6 +8,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { CriteriosService } from 'src/app/services/criterios.service';
 import { CriterioModel } from 'src/app/models/criterio.model';
+import { EvaluadorModel } from 'src/app/models/evaluador.model';
+import { EvaluadoresService } from 'src/app/services/evaluadores.service';
 
 @Component({
   selector: 'app-proyecto',
@@ -18,8 +20,8 @@ export class ProyectoComponent implements OnInit {
 
   forma: FormGroup;
 
-  
   public criterios: CriterioModel[] = [];
+  public evaluadores: EvaluadorModel[] = [];
   public disertantes: DisertanteModel[] = [];
   //public carreras: CarreraModel[] = [];
   public disertanteSeleccionado: DisertanteModel;
@@ -30,6 +32,7 @@ export class ProyectoComponent implements OnInit {
   constructor( private fb: FormBuilder,
                private proyectosService: ProyectosService,
                private criteriosService: CriteriosService,
+               private evaluadoresService: EvaluadoresService,
                private disertantesService: DisertantesService,
                private route: ActivatedRoute) { 
 
@@ -59,7 +62,7 @@ export class ProyectoComponent implements OnInit {
     //this.cargarCategorias();
 
    
-   
+    //PARA ASIGNAR DISERTANTES  AL PROYECTO
     this.disertantesService.getDisertantes()
     .subscribe( disertantes => {
       this.disertantes = disertantes;
@@ -68,6 +71,21 @@ export class ProyectoComponent implements OnInit {
         nombre: '[ Seleccione Disertante]',
         id: ''
       })
+
+      // console.log( this.paises );
+    });
+
+
+    //PARA ASIGNAR EVALUADORES A PROYECTO
+    this.evaluadoresService.getEvaluadores()
+    .subscribe( evaluadores => {
+      
+      this.evaluadores = evaluadores;
+
+      /*this.evaluadores.unshift({
+        nombre: '[ Seleccione Evaluador]',
+        id: ''
+      })*/
 
       // console.log( this.paises );
     });
@@ -89,7 +107,7 @@ export class ProyectoComponent implements OnInit {
         id: ''
       })*/
 
-      console.log( this.criterios );
+      console.log( this.proyecto.criterios );
     });
 
 
@@ -139,6 +157,9 @@ export class ProyectoComponent implements OnInit {
       titulo  : ['', Validators.required ],
       codigo: ['', [Validators.required, Validators.minLength(5) ] ],
       disertante  : ['' ],
+      evaluador1  : ['' ],
+      evaluador2  : ['' ],
+      evaluador3  : ['' ],
       cuerpo  : ['', [ Validators.required, Validators.minLength(50) ]  ],
       //email  : ['', [ Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')] ],
       //usuario : ['', , this.validadores.existeUsuario ],

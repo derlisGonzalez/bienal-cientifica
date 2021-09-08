@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { CriterioModel } from 'src/app/models/criterio.model';
 import { DisertanteModel } from 'src/app/models/disertante.model';
 import { ProyectoModel } from 'src/app/models/proyecto.model';
@@ -49,6 +50,9 @@ export class VisualizarProyectoComponent implements OnInit {
         this.proyectos = resp;
         this.cargando = false;
       });
+
+
+     
 
 
     let valorTotal = this.proyecto.totalPuntaje;

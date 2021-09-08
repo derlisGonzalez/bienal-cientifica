@@ -24,6 +24,8 @@ export class ReporteProyectoComponent implements OnInit {
         this.cargando = false;
       });
 
+      
+
   }
 
 }

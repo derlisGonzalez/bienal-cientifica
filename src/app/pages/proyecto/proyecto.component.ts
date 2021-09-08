@@ -28,7 +28,6 @@ export class ProyectoComponent implements OnInit {
   //public carreraSeleccionada: CarreraModel;
   proyecto: ProyectoModel = new ProyectoModel();
   
-
   constructor( private fb: FormBuilder,
                private proyectosService: ProyectosService,
                private criteriosService: CriteriosService,
@@ -43,11 +42,9 @@ export class ProyectoComponent implements OnInit {
 
   ngOnInit() {
 
-    
     let valorTotal = this.proyecto.totalPuntaje;
     const id = this.route.snapshot.paramMap.get('id');
 
-    
     //console.log(this.criterios.values);
     if ( id !== 'nuevo' ) {
 
@@ -61,7 +58,6 @@ export class ProyectoComponent implements OnInit {
 
     //this.cargarCategorias();
 
-   
     //PARA ASIGNAR DISERTANTES  AL PROYECTO
     this.disertantesService.getDisertantes()
     .subscribe( disertantes => {
@@ -74,7 +70,6 @@ export class ProyectoComponent implements OnInit {
 
       // console.log( this.paises );
     });
-
 
     //PARA ASIGNAR EVALUADORES A PROYECTO
     this.evaluadoresService.getEvaluadores()
@@ -101,7 +96,6 @@ export class ProyectoComponent implements OnInit {
                                           //se puede guardar sin el valor y cargar unicamente en la hora de 
                                           //calificar ya que el modelo de la base de datos es flexible
     
-
       /*this.criterios.unshift({
         descripcion: '',
         id: ''
@@ -109,7 +103,6 @@ export class ProyectoComponent implements OnInit {
 
       console.log( this.proyecto.criterios );
     });
-
 
     /*this.carrerasService.getCarreras()
     .subscribe( carreras => {
@@ -128,7 +121,6 @@ export class ProyectoComponent implements OnInit {
           this.categoriaSeleccionadah = this.categorias.find( h => h.id === categoriaId );
         })*/
   }
-  
   
   /*mostrarListado(){
     var lista='';
@@ -173,12 +165,9 @@ export class ProyectoComponent implements OnInit {
           p3: [0, Validators.required ],
         }),
         
-
       }),
       criterioss: this.fb.array([
-        
-       
-        
+
         this.initCriterios()
         
       ]),*/
@@ -195,7 +184,6 @@ export class ProyectoComponent implements OnInit {
       manufacturerName: ['', Validators.required]
     })
   }
-
 
   guardar( ) {
 
@@ -216,7 +204,6 @@ export class ProyectoComponent implements OnInit {
       peticion = this.proyectosService.crearProyecto(this.proyecto );
     }
 
-
     peticion.subscribe( resp => {
 
     /*Swal.fire({
@@ -230,11 +217,7 @@ export class ProyectoComponent implements OnInit {
     console.log();
     console.log(this.proyecto);
     console.log(this.forma);
-
   }
-
-
-
 
   // guardar( form: NgForm ) {
 
@@ -260,7 +243,6 @@ export class ProyectoComponent implements OnInit {
   //     peticion = this.proyectosService.crearProyecto(this.proyecto );
   //   }
 
-
   //   peticion.subscribe( resp => {
 
   //   /*Swal.fire({
@@ -276,7 +258,6 @@ export class ProyectoComponent implements OnInit {
   //   console.log(this.forma);
 
   // }
-
 
   /*cargarDisertantes() {
 

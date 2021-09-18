@@ -33,6 +33,8 @@ import { HeaderComponent } from './shared/header/header.component';
 import { ReporteProyectoComponent } from './reportes/reporte-proyecto/reporte-proyecto.component';
 import { ReporteDisertanteComponent } from './reportes/reporte-disertante/reporte-disertante.component';
 import { VisualizarProyectoComponent } from './reportes/reporte-proyecto/visualizar-proyecto/visualizar-proyecto.component';
+import { UsuarioComponent } from './pages/usuario/usuario.component';
+import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 
 
 
@@ -65,6 +67,8 @@ import { VisualizarProyectoComponent } from './reportes/reporte-proyecto/visuali
     ReporteProyectoComponent,
     ReporteDisertanteComponent,
     VisualizarProyectoComponent,
+    UsuarioComponent,
+    UsuariosComponent,
   ],
   imports: [
     BrowserModule,

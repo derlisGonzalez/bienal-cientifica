@@ -20,10 +20,10 @@
         <form [formGroup]="forma" (ngSubmit)="guardar()" >
 
             <div class="form-group">
-                <label>ID</label>
+                <label>UID</label>
                 <input class="form-control"
                        type="text"
-                       placeholder="ID"
+                       placeholder="UID"
                        [(ngModel)]="usuario.uid"
                        [attr.disabled]="true"
                        formControlName="uid">
@@ -88,11 +88,11 @@
                         <select class="form-control"
                             [(ngModel)]="usuario.carrera"
                             formControlName="carrera">
-                            <!-- <option *ngFor="let carrera of carreras"
+                            <option *ngFor="let carrera of carreras"
                                     [value]="carrera.descripcion">
                             
                             {{ carrera.descripcion }}
-                    </option> -->
+                    </option>
                   </select>
                     </div>
 

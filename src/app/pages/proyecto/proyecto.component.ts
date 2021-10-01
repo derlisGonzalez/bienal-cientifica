@@ -95,12 +95,6 @@ export class ProyectoComponent implements OnInit {
                                           // puede ser opcional porque
                                           //se puede guardar sin el valor y cargar unicamente en la hora de 
                                           //calificar ya que el modelo de la base de datos es flexible
-    
-      /*this.criterios.unshift({
-        descripcion: '',
-        id: ''
-      })*/
-
       console.log( this.proyecto.criterios );
     });
 

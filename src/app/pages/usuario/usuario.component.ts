@@ -14,6 +14,8 @@ import { EvaluadoresService } from 'src/app/services/evaluadores.service';
 import { ProyectosService } from 'src/app/services/proyectos.service';
 import { UserService } from 'src/app/services/user.service';
 import { Observable } from 'rxjs';
+import { CarrerasService } from 'src/app/services/carreras.service';
+import { CarreraModel } from 'src/app/models/carrera.model';
 
 
 @Component({
@@ -28,16 +30,16 @@ export class UsuarioComponent implements OnInit {
   public evaluadores: EvaluadorModel[] = [];
   public disertantes: DisertanteModel[] = [];
   public categorias: CategoriaModel[] = [];
-    //public carreras: CarreraModel[] = [];
-    public disertanteSeleccionado: DisertanteModel;
-    //public carreraSeleccionada: CarreraModel;
-    usuario: UsuarioModel = new UsuarioModel();
+  public carreras: CarreraModel[] = [];
+  public disertanteSeleccionado: DisertanteModel;
+  //public carreraSeleccionada: CarreraModel;
+  usuario: UsuarioModel = new UsuarioModel();
 
     constructor( private fb: FormBuilder,
       private proyectosService: ProyectosService,
       private criteriosService: CriteriosService,
       private evaluadoresService: EvaluadoresService,
-      private disertantesService: DisertantesService,
+      private carrerasService: CarrerasService,
       private categoriasService: CategoriasService,
       private usersService: UserService,
       private route: ActivatedRoute) { 
@@ -65,50 +67,31 @@ export class UsuarioComponent implements OnInit {
     
         //this.cargarCategorias();
     
-        //PARA ASIGNAR DISERTANTES  AL PROYECTO
-        this.disertantesService.getDisertantes()
-        .subscribe( disertantes => {
-          this.disertantes = disertantes;
+        //PARA ASIGNAR carrera  AL usuario
+        this.carrerasService.getCarreras()
+        .subscribe( carreras => {
+          this.carreras = carreras;
     
-          this.disertantes.unshift({
-            nombre: '[ Seleccione Disertante]',
+          this.carreras.unshift({
+            descripcion: '[ Seleccione Carrera]',
             id: ''
           })
     
           // console.log( this.paises );
         });
     
-        //PARA ASIGNAR EVALUADORES A PROYECTO
-        this.evaluadoresService.getEvaluadores()
-        .subscribe( evaluadores => {
+        //PARA ASIGNAR CATEGORIA AL USUARIO
+        this.categoriasService.getCategorias()
+        .subscribe( categorias => {
           
-          this.evaluadores = evaluadores;
+          this.categorias = categorias;
     
-          /*this.evaluadores.unshift({
-            nombre: '[ Seleccione Evaluador]',
+          this.categorias.unshift({
+            descripcion: '[ Seleccione Categoria]',
             id: ''
-          })*/
+          })
     
           // console.log( this.paises );
-        });
-    
-        this.criteriosService.getCriterios()
-        .subscribe( criterios => {
-          if(!this.usuario.uid){
-            //this.proyecto.criterios = criterios
-            //this.setValorDefault(this.proyecto)
-          }
-          //this.setValorDefault(this.proyecto) // crear un valor default para puntajeAsignado
-                                              // puede ser opcional porque
-                                              //se puede guardar sin el valor y cargar unicamente en la hora de 
-                                              //calificar ya que el modelo de la base de datos es flexible
-        
-          /*this.criterios.unshift({
-            descripcion: '',
-            id: ''
-          })*/
-    
-          //console.log( this.proyecto.criterios );
         });
     
         /*this.carrerasService.getCarreras()
@@ -132,14 +115,14 @@ export class UsuarioComponent implements OnInit {
 
       crearFormulario() {
         this.forma = this.fb.group({
-          id  : ['', Validators.required ],
-          titulo  : ['', Validators.required ],
-          codigo: ['', [Validators.required, Validators.minLength(5) ] ],
-          disertante  : ['' ],
-          evaluador1  : ['' ],
-          evaluador2  : ['' ],
-          evaluador3  : ['' ],
-          cuerpo  : ['', [ Validators.required, Validators.minLength(50) ]  ],
+          uid  : ['', Validators.required ],
+          nombre  : ['', Validators.required ],
+          documento: ['', [Validators.required, Validators.minLength(10) ] ],
+          password  : ['' ],
+          categoria  : ['' ],
+          carrera  : ['' ],
+          rol  : ['' ],
+          //cuerpo  : ['', [ Validators.required, Validators.minLength(50) ]  ],
           //email  : ['', [ Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')] ],
           //usuario : ['', , this.validadores.existeUsuario ],
           //pass1   : ['', Validators.required ],
@@ -202,8 +185,8 @@ export class UsuarioComponent implements OnInit {
         });
     
         console.log();
-        //console.log(this.proyecto);
-        //console.log(this.forma);
+        console.log(this.usuario);
+        console.log(this.forma);
       }
     
       // guardar( form: NgForm ) {

@@ -11,13 +11,13 @@ export class ProyectoModel {
     autor2?: string;
     estado?: boolean = false;
     totalPuntaje?: number;
-    evaluador1?: string[];
-    evaluador2?: string;
-    evaluador3?: string;
+    evaluador1?: EvaluadorModel[];
+    evaluador2?: EvaluadorModel[];
+    evaluador3?: EvaluadorModel[];
 
     //lista de evaluadores
     //se agraga uno o mas evaluadores
-    evaluadores?: EvaluadorModel[];
+    //evaluadores?: EvaluadorModel[];
 
     criterios?: CriterioModel[];
     //criterios?: string; // se crea un array para cargar todos los criterios

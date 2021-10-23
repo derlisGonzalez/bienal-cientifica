@@ -6,6 +6,8 @@ import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { CarreraModel } from 'src/app/models/carrera.model';
 import { CarrerasService } from 'src/app/services/carreras.service';
+import { CriterioModel } from 'src/app/models/criterio.model';
+import { CriteriosService } from 'src/app/services/criterios.service';
 
 @Component({
   selector: 'app-evaluador',
@@ -17,9 +19,12 @@ export class EvaluadorComponent implements OnInit {
   public carreras: CarreraModel[] = [];
   public carreraSeleccionada: CarreraModel;
 
+  public criterios: CriterioModel[] = [];
+
   evaluador: EvaluadorModel = new EvaluadorModel();
 
   constructor( private evaluadoresService: EvaluadoresService,
+               private criteriosService: CriteriosService,
                private carrerasService: CarrerasService,
                private route: ActivatedRoute) { }
 
@@ -49,8 +54,29 @@ export class EvaluadorComponent implements OnInit {
 
       // console.log( this.paises );
     });
+
+
+    console.log(this.criterios.values);
+
+    this.criteriosService.getCriterios()
+    .subscribe( criterios => {
+      if(!this.evaluador.id){
+        this.evaluador.criterios = criterios
+        this.setValorDefault(this.evaluador)
+      }
+      //this.setValorDefault(this.proyecto) // crear un valor default para puntajeAsignado
+                                          // puede ser opcional porque
+                                          //se puede guardar sin el valor y cargar unicamente en la hora de 
+                                          //calificar ya que el modelo de la base de datos es flexible
+      console.log( this.evaluador.criterios );
+    });
   }
 
+  setValorDefault(evaluador: EvaluadorModel){
+    evaluador.criterios.forEach(criterio => {
+      criterio.puntajeAsignado = 0
+    });
+  }
 
 
 

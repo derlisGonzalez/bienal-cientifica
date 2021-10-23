@@ -35,6 +35,10 @@ import { ReporteDisertanteComponent } from './reportes/reporte-disertante/report
 import { VisualizarProyectoComponent } from './reportes/reporte-proyecto/visualizar-proyecto/visualizar-proyecto.component';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import { ReporteCarrerasComponent } from './reportes/reporte-carreras/reporte-carreras.component';
+import { VisualizarCarreraComponent } from './reportes/reporte-carreras/visualizar-carrera/visualizar-carrera.component';
+import { ReporteCriteriosComponent } from './reportes/reporte-criterios/reporte-criterios.component';
+import { ReporteCategoriasComponent } from './reportes/reporte-categorias/reporte-categorias.component';
 
 
 
@@ -69,6 +73,10 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
     VisualizarProyectoComponent,
     UsuarioComponent,
     UsuariosComponent,
+    ReporteCarrerasComponent,
+    VisualizarCarreraComponent,
+    ReporteCriteriosComponent,
+    ReporteCategoriasComponent,
   ],
   imports: [
     BrowserModule,

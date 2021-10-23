@@ -42,7 +42,7 @@ export class ProyectoComponent implements OnInit {
 
   ngOnInit() {
 
-    let valorTotal = this.proyecto.totalPuntaje;
+   // let valorTotal = this.proyecto.totalPuntaje;
     const id = this.route.snapshot.paramMap.get('id');
 
     //console.log(this.criterios.values);
@@ -74,7 +74,11 @@ export class ProyectoComponent implements OnInit {
     //PARA ASIGNAR EVALUADORES A PROYECTO
     this.evaluadoresService.getEvaluadores()
     .subscribe( evaluadores => {
-      
+      if(!this.proyecto.id){
+        this.proyecto.evaluador1 = evaluadores
+        //this.setValorDefaultEval(this.proyecto)
+        
+      }
       this.evaluadores = evaluadores;
 
       /*this.evaluadores.unshift({
@@ -82,7 +86,7 @@ export class ProyectoComponent implements OnInit {
         id: ''
       })*/
 
-      // console.log( this.paises );
+      console.log( this.proyecto.evaluador1 );
     });
 
     this.criteriosService.getCriterios()
@@ -97,6 +101,8 @@ export class ProyectoComponent implements OnInit {
                                           //calificar ya que el modelo de la base de datos es flexible
       console.log( this.proyecto.criterios );
     });
+
+
 
     /*this.carrerasService.getCarreras()
     .subscribe( carreras => {
@@ -132,6 +138,11 @@ export class ProyectoComponent implements OnInit {
       criterio.puntajeAsignado = 0
     });
   }
+
+
+
+
+  
 
   setValorTotal(proyecto: ProyectoModel){
     

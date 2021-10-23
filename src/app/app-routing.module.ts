@@ -1,3 +1,6 @@
+import { ReporteCategoriasComponent } from './reportes/reporte-categorias/reporte-categorias.component';
+import { ReporteCriteriosComponent } from './reportes/reporte-criterios/reporte-criterios.component';
+import { ReporteCarrerasComponent } from './reportes/reporte-carreras/reporte-carreras.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarrerasComponent } from './pages/carreras/carreras.component';
@@ -23,6 +26,8 @@ import { ReporteProyectoComponent } from './reportes/reporte-proyecto/reporte-pr
 import { VisualizarProyectoComponent } from './reportes/reporte-proyecto/visualizar-proyecto/visualizar-proyecto.component';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import { VisualizarCarreraComponent } from './reportes/reporte-carreras/visualizar-carrera/visualizar-carrera.component';
+
 
 
 const routes: Routes = [
@@ -59,6 +64,14 @@ const routes: Routes = [
   //REPORTES
   { path: 'lista-proyectos', component: ReporteProyectoComponent },
   { path: 'proyecto-pdf/:id', component: VisualizarProyectoComponent },
+
+  { path: 'lista-carreras', component: ReporteCarrerasComponent },
+  { path: 'carrera-pdf/:id', component: VisualizarCarreraComponent },
+
+  { path: 'lista-criterios', component: ReporteCriteriosComponent },
+  //{ path: 'criterio-pdf/:id', component: VisualizarCarreraComponent },
+
+  { path: 'lista-categorias', component: ReporteCategoriasComponent },
 
   { path: 'inicio', component: InicioComponent },
 

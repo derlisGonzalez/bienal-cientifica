@@ -31,8 +31,8 @@ import { VisualizarCarreraComponent } from './reportes/reporte-carreras/visualiz
 
 
 const routes: Routes = [
-  { path: 'carreras', component: CarrerasComponent },
-  { path: 'carrera/:id', component: CarreraComponent },
+  { path: 'areas', component: CarrerasComponent },
+  { path: 'area/:id', component: CarreraComponent },
 
   { path: 'categorias', component: CategoriasComponent },
   { path: 'categoria/:id', component: CategoriaComponent },

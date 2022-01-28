@@ -21,7 +21,9 @@ import { RegisterComponent } from './register/register.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AuthModule,
+    SharedModule
   ]
 })
 export class AuthModule { }

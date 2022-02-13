@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { DisertanteModel } from '../../models/disertante.model';
 import { ProyectoModel } from '../../models/proyecto.model';
 import { ProyectosService } from '../../services/proyectos.service';
@@ -10,6 +10,8 @@ import { CriteriosService } from 'src/app/services/criterios.service';
 import { CriterioModel } from 'src/app/models/criterio.model';
 import { EvaluadorModel } from 'src/app/models/evaluador.model';
 import { EvaluadoresService } from 'src/app/services/evaluadores.service';
+import { CarreraModel } from 'src/app/models/carrera.model';
+import { CarrerasService } from 'src/app/services/carreras.service';
 
 @Component({
   selector: 'app-proyecto',
@@ -19,109 +21,113 @@ import { EvaluadoresService } from 'src/app/services/evaluadores.service';
 export class ProyectoComponent implements OnInit {
 
   forma: FormGroup;
-
   public criterios: CriterioModel[] = [];
   public evaluadores: EvaluadorModel[] = [];
+  public evaluador: EvaluadorModel = new EvaluadorModel()
+  public evaluador1: EvaluadorModel = new EvaluadorModel()
+  public evaluador2: EvaluadorModel = new EvaluadorModel()
+  public evaluador3: EvaluadorModel = new EvaluadorModel()
   public disertantes: DisertanteModel[] = [];
-  //public carreras: CarreraModel[] = [];
+  public carreras: CarreraModel[] = [];
+  public carrera: CarreraModel = new CarreraModel;
   public disertanteSeleccionado: DisertanteModel;
   //public carreraSeleccionada: CarreraModel;
   proyecto: ProyectoModel = new ProyectoModel();
-  
-  constructor( private fb: FormBuilder,
-               private proyectosService: ProyectosService,
-               private criteriosService: CriteriosService,
-               private evaluadoresService: EvaluadoresService,
-               private disertantesService: DisertantesService,
-               private route: ActivatedRoute) { 
 
-                this.crearFormulario();
-                //this.criteriosService.getCriterios();
+  constructor(private fb: FormBuilder,
+    private proyectosService: ProyectosService,
+    private criteriosService: CriteriosService,
+    private evaluadoresService: EvaluadoresService,
+    private disertantesService: DisertantesService,
+    private carrerasService: CarrerasService,
+    private route: ActivatedRoute) {
 
-               }
+    this.crearFormulario();
+    //this.criteriosService.getCriterios();
+
+  }
+
 
   ngOnInit() {
-
-   // let valorTotal = this.proyecto.totalPuntaje;
+    // let valorTotal = this.proyecto.totalPuntaje;
     const id = this.route.snapshot.paramMap.get('id');
-
     //console.log(this.criterios.values);
-    if ( id !== 'nuevo' ) {
-
-      this.proyectosService.getProyecto( id )
-        .subscribe( (resp: ProyectoModel) => {
+    if (id !== 'nuevo') {
+      this.proyectosService.getProyecto(id)
+        .subscribe((resp: ProyectoModel) => {
           this.proyecto = resp;
           this.proyecto.id = id;
         });
-
     }
 
     //this.cargarCategorias();
-
     //PARA ASIGNAR DISERTANTES  AL PROYECTO
     this.disertantesService.getDisertantes()
-    .subscribe( disertantes => {
-      this.disertantes = disertantes;
+      .subscribe(disertantes => {
+        this.disertantes = disertantes;
+        this.disertantes.unshift({
+          nombre: '[ Seleccione Disertante]',
+          id: ''
+        })
+      });
 
-      this.disertantes.unshift({
-        nombre: '[ Seleccione Disertante]',
-        id: ''
-      })
-
-      // console.log( this.paises );
-    });
+    this.carrerasService.getCarreras()
+      .subscribe(carreras => {
+        this.carreras = carreras;
+        this.carreras.unshift({
+          descripcion: '[ Seleccione Carrera]',
+          id: ''
+        })
+        console.log(this.carreras)
+      });
 
     //PARA ASIGNAR EVALUADORES A PROYECTO
-    this.evaluadoresService.getEvaluadores()
-    .subscribe( evaluadores => {
-      if(!this.proyecto.id){
-        this.proyecto.evaluador1 = evaluadores
-        //this.setValorDefaultEval(this.proyecto)
-        
-      }
-      this.evaluadores = evaluadores;
+    /*
+        this.evaluadoresService.getEvaluadores()
+        .subscribe( evaluadores => {
+          if(!this.proyecto.id){
+            this.proyecto.evaluadores = evaluadores
+            //this.setValorDefaultEval(this.proyecto)
+          }
+          this.evaluadores = evaluadores;
+          /*this.evaluadores.unshift({
+            nombre: '[ Seleccione Evaluador]',
+            id: ''
+          })*/
 
-      /*this.evaluadores.unshift({
-        nombre: '[ Seleccione Evaluador]',
-        id: ''
-      })*/
-
-      console.log( this.proyecto.evaluador1 );
-    });
+    //console.log( this.proyecto.evaluadores );
+    //});
 
     this.criteriosService.getCriterios()
-    .subscribe( criterios => {
-      if(!this.proyecto.id){
-        this.proyecto.criterios = criterios
-        this.setValorDefault(this.proyecto)
-      }
-      //this.setValorDefault(this.proyecto) // crear un valor default para puntajeAsignado
-                                          // puede ser opcional porque
-                                          //se puede guardar sin el valor y cargar unicamente en la hora de 
-                                          //calificar ya que el modelo de la base de datos es flexible
-      console.log( this.proyecto.criterios );
-    });
+      .subscribe(criterios => {
+        this.criterios = criterios
+        console.log(this.criterios);
+      });
 
+    // console.log( this.paises );
 
-
-    /*this.carrerasService.getCarreras()
-    .subscribe( carreras => {
-      this.carreras = carreras;
-
-      this.carreras.unshift({
-        descripcion: '[ Seleccione Carrera]',
-        id: ''
-      })
-     });*/
-
-      // console.log( this.paises );
-   
     /*this.disertantesService.get('hospital').valueChanges
         .subscribe( categoriaId => {
           this.categoriaSeleccionadah = this.categorias.find( h => h.id === categoriaId );
         })*/
+
+    this.forma.controls["carrera"].valueChanges.subscribe((c: CarreraModel) => {
+      console.log(c)
+      this.carrera = c
+      this.evaluadores = c.evaluadores
+    })
+    this.forma.controls["evaluador1"].valueChanges.subscribe((e: EvaluadorModel) => {
+      this.proyecto.evaluador1 = this.getEvaluador(e)
+    })
+    this.forma.controls["evaluador2"].valueChanges.subscribe((e: EvaluadorModel) => {
+      this.proyecto.evaluador2 = this.getEvaluador(e)
+    })
+    this.forma.controls["evaluador3"].valueChanges.subscribe((e: EvaluadorModel) => {
+      this.proyecto.evaluador3 = this.getEvaluador(e)
+    })
+
+
   }
-  
   /*mostrarListado(){
     var lista='';
     for(var i=0; i<jugadores.length; i++){
@@ -133,51 +139,55 @@ export class ProyectoComponent implements OnInit {
     document.getElementById('listado').innerText = lista;
   }*/
 
-  setValorDefault(proyecto: ProyectoModel){
-    proyecto.criterios.forEach(criterio => {
+  getEvaluador(evaluador: EvaluadorModel): EvaluadorModel {
+    let e = Object.assign({}, evaluador)
+    e.criterios = this.criterios
+    this.setValorDefault(e)
+    return e
+  }
+
+  setValorDefault(evaluador: EvaluadorModel) {
+    evaluador.criterios.forEach(criterio => {
       criterio.puntajeAsignado = 0
     });
   }
 
+  setValorTotal(proyecto: ProyectoModel) {
 
-
-
-  
-
-  setValorTotal(proyecto: ProyectoModel){
-    
   }
 
   crearFormulario() {
     this.forma = this.fb.group({
-      id  : ['', Validators.required ],
-      titulo  : ['', Validators.required ],
-      codigo: ['', [Validators.required, Validators.minLength(5) ] ],
-      disertante  : ['' ],
-      evaluador1  : ['' ],
-      evaluador2  : ['' ],
-      evaluador3  : ['' ],
-      cuerpo  : ['', [ Validators.required, Validators.minLength(50) ]  ],
+      id: ['', Validators.required],
+      titulo: ['', Validators.required],
+      codigo: ['', [Validators.required, Validators.minLength(5)]],
+      disertante: [''],
+      carrera: [''],
+      evaluadores: [''],
+      evaluador1: [''],
+      evaluador2: [''],
+      evaluador3: [''],
+      cuerpo: ['', [Validators.required, Validators.minLength(50)]],
       //email  : ['', [ Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')] ],
       //usuario : ['', , this.validadores.existeUsuario ],
       //pass1   : ['', Validators.required ],
       //pass2   : ['', Validators.required ],
-     /* criterios: this.fb.group({
-
-        el_expositor_seadecua_al_tiempo_estipulado: this.fb.group({
-          p1: [0, Validators.required ],
-          p2: [0, Validators.required ],
-          p3: [0, Validators.required ],
-        }),
-        
-      }),
-      criterioss: this.fb.array([
-
-        this.initCriterios()
-        
-      ]),*/
+      /* criterios: this.fb.group({
+ 
+         el_expositor_seadecua_al_tiempo_estipulado: this.fb.group({
+           p1: [0, Validators.required ],
+           p2: [0, Validators.required ],
+           p3: [0, Validators.required ],
+         }),
+         
+       }),
+       criterioss: this.fb.array([
+ 
+         this.initCriterios()
+         
+       ]),*/
       //pasatiempos: this.fb.array([])
-    },{
+    }, {
       //validators: this.validadores.passwordsIguales('pass1','pass2')
     });
 
@@ -190,7 +200,7 @@ export class ProyectoComponent implements OnInit {
     })
   }
 
-  guardar( ) {
+  guardar() {
 
     /*Swal.fire({
       title: 'Espere',
@@ -203,19 +213,20 @@ export class ProyectoComponent implements OnInit {
 
     let peticion: Observable<any>;
 
-    if ( this.proyecto.id ) {
-      peticion = this.proyectosService.actualizarProyecto( this.proyecto );
+    if (this.proyecto.id) {
+      peticion = this.proyectosService.actualizarProyecto(this.proyecto);
     } else {
-      peticion = this.proyectosService.crearProyecto(this.proyecto );
+      peticion = this.proyectosService.crearProyecto(this.proyecto);
     }
 
-    peticion.subscribe( resp => {
+    peticion.subscribe(resp => {
+      this.actualizarCarrera(this.proyecto)
 
-    /*Swal.fire({
-      title: this.carrera.descripcion,
-      text: 'Se actualizó correctamente',
-      type: 'success'
-    });*/
+      /*Swal.fire({
+        title: this.carrera.descripcion,
+        text: 'Se actualizó correctamente',
+        type: 'success'
+      });*/
 
     });
 
@@ -273,4 +284,21 @@ export class ProyectoComponent implements OnInit {
 
   }*/
 
+actualizarCarrera(proyecto: ProyectoModel) {
+  let newProyecto = Object.assign({}, proyecto)
+  let newCarrera = Object.assign({},this.carrera)
+  if(newCarrera.proyectos == undefined){
+    newCarrera.proyectos = []
+  }
+  if (newCarrera.proyectos.some(({id}) => id == proyecto.id)){
+    newCarrera.evaluadores.forEach((e,index)=>{
+      if(e.id == newProyecto.id) newCarrera.evaluadores.splice(index,1)
+    });
+  }
+  newCarrera.proyectos.push(newProyecto)
+  let response = this.carrerasService.actualizarCarera(newCarrera)
+  response.subscribe(resp =>{
+    console.log(resp)
+  })
+}
 }

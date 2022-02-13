@@ -48,7 +48,7 @@ export class CalificarComponent implements OnInit {
    
     this.criteriosService.getCriterios()
     .subscribe( criterios => {
-      this.criterios = criterios;
+     // this.criterios = criterios;
 
       /*this.criterios.unshift({
         descripcion: '',

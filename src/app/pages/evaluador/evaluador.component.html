@@ -37,9 +37,8 @@
                 <label class="col-2 col-form-label">Carreras</label>
                 <div class="col-8" placeholder="Seleccione Carrera">
 
-                    <select class="form-control" [disabled]="carreras.length === 0" [(ngModel)]="evaluador.carrera" name="carrera" required>
-                    <option *ngFor="let carrera of carreras"
-                            [value]="carrera.descripcion">
+                    <select class="form-control" [disabled]="carreras.length === 0" [(ngModel)]="carrera" name="carrera" required>
+                    <option *ngFor="let carrera of carreras" [ngValue]="carrera">
                             <!-- [value]="carrera.id"> -->
                       {{ carrera.descripcion }}
                     </option>

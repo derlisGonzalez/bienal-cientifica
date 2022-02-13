@@ -89,8 +89,8 @@ export class VisualizarProyectoComponent implements OnInit {
     this.criteriosService.getCriterios()
       .subscribe(criterios => {
         if (!this.proyecto.id) {
-          this.proyecto.criterios = criterios
-          this.setValorDefault(this.proyecto)
+         // this.proyecto.criterios = criterios
+         // this.setValorDefault(this.proyecto)
         }
         //this.setValorDefault(this.proyecto) // crear un valor default para puntajeAsignado
         // puede ser opcional porque
@@ -126,11 +126,11 @@ export class VisualizarProyectoComponent implements OnInit {
   }
 
 
-  setValorDefault(proyecto: ProyectoModel) {
+  /*setValorDefault(proyecto: ProyectoModel) {
     proyecto.criterios.forEach(criterio => {
       criterio.puntajeAsignado = 0
     });
-  }
+  }*/
 
   setValorTotal(proyecto: ProyectoModel) {
 

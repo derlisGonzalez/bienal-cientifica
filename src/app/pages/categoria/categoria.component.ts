@@ -42,14 +42,14 @@ export class CategoriaComponent implements OnInit {
       return;
     }
 
-    /*Swal.fire({
+    Swal.fire({
       title: 'Espere',
       text: 'Guardando información',
-      type: 'info',
+      icon: 'info',
       allowOutsideClick: false
     });
 
-    Swal.showLoading();*/
+    Swal.showLoading();
 
     let peticion: Observable<any>;
 
@@ -62,11 +62,11 @@ export class CategoriaComponent implements OnInit {
 
     peticion.subscribe( resp => {
 
-      /*Swal.fire({
+      Swal.fire({
         title: this.categoria.descripcion,
         text: 'Se actualizó correctamente',
-        type: 'success'
-      });*/
+        icon: 'success'
+      });
 
     });
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DisertanteModel } from '../../models/disertante.model';
 import { DisertantesService } from '../../services/disertantes.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-disertantes',
@@ -28,20 +29,20 @@ export class DisertantesComponent implements OnInit {
 
   borrarDisertante( disertante: DisertanteModel, i: number ) {
 
-    /*Swal.fire({
+    Swal.fire({
       title: '¿Está seguro?',
-      text: `Está seguro que desea borrar a ${ carrera.descripcion }`,
-      type: 'question',
+      text: `Está seguro que desea borrar a ${ disertante.nombre }`,
+      icon: 'question',
       showConfirmButton: true,
       showCancelButton: true
-    }).then( resp => {*/
+    }).then( resp => {
 
-      //if ( resp.value ) {
+      if ( resp.value ) {
         this.disertantes.splice(i, 1);
         this.disertantesService.borrarDisertante( disertante.id ).subscribe();
-      //}
+      }
 
-    //});
+    });
 
   }
 }

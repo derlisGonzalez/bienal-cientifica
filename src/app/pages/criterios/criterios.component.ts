@@ -28,20 +28,20 @@ export class CriteriosComponent implements OnInit {
 
   borrarCriterio( criterio: CriterioModel, i: number ) {
 
-    /*Swal.fire({
+    Swal.fire({
       title: '¿Está seguro?',
       text: `Está seguro que desea borrar a ${ criterio.descripcion }`,
-      type: 'question',
+      icon: 'question',
       showConfirmButton: true,
       showCancelButton: true
     }).then( resp => {
 
-      if ( resp.value ) {*/
+      if ( resp.value ) {
         this.criterios.splice(i, 1);
         this.criteriosService.borrarCriterio( criterio.id ).subscribe();
-      //}
+      }
 
-    //});
+    });
 
   }
 

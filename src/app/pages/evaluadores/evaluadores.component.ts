@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { EvaluadorModel } from '../../models/evaluador.model';
 import { EvaluadoresService } from '../../services/evaluadores.service';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-evaluadores',
   templateUrl: './evaluadores.component.html',
@@ -28,20 +30,20 @@ export class EvaluadoresComponent implements OnInit {
 
   borrarEvaluador( evaluador: EvaluadorModel, i: number ) {
 
-    /*Swal.fire({
+    Swal.fire({
       title: '¿Está seguro?',
-      text: `Está seguro que desea borrar a ${ carrera.descripcion }`,
-      type: 'question',
+      text: `Está seguro que desea borrar a ${ evaluador.nombre }`,
+      icon: 'question',
       showConfirmButton: true,
       showCancelButton: true
-    }).then( resp => {*/
+    }).then( resp => {
 
-      //if ( resp.value ) {
+      if ( resp.value ) {
         this.evaluadores.splice(i, 1);
         this.evaluadoresService.borrarEvaluador( evaluador.id ).subscribe();
-      //}
+      }
 
-    //});
+    });
 
   }
 }

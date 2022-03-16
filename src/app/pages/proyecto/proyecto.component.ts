@@ -13,6 +13,8 @@ import { EvaluadoresService } from 'src/app/services/evaluadores.service';
 import { CarreraModel } from 'src/app/models/carrera.model';
 import { CarrerasService } from 'src/app/services/carreras.service';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-proyecto',
   templateUrl: './proyecto.component.html',
@@ -202,14 +204,24 @@ export class ProyectoComponent implements OnInit {
 
   guardar() {
 
-    /*Swal.fire({
+   if ( this.forma.invalid ) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Formulario no valido!'
+      //footer: '<a href="">Why do I have this issue?</a>'
+    })
+    console.log('Formulario no válido');
+     return;
+   }
+    Swal.fire({
       title: 'Espere',
       text: 'Guardando información',
-      type: 'info',
+      icon: 'info',
       allowOutsideClick: false
-    });*/
+    });
 
-    //Swal.showLoading();
+    Swal.showLoading();
 
     let peticion: Observable<any>;
 
@@ -222,11 +234,11 @@ export class ProyectoComponent implements OnInit {
     peticion.subscribe(resp => {
       this.actualizarCarrera(this.proyecto)
 
-      /*Swal.fire({
-        title: this.carrera.descripcion,
+      Swal.fire({
+        title: this.proyecto.titulo,
         text: 'Se actualizó correctamente',
-        type: 'success'
-      });*/
+        icon: 'success'
+      });
 
     });
 

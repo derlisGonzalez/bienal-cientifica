@@ -9,6 +9,8 @@ import { CategoriasService } from '../../services/categorias.service';
 import { CarrerasService } from '../../services/carreras.service';
 import { CarreraModel } from '../../models/carrera.model';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-disertante',
   templateUrl: './disertante.component.html',
@@ -82,18 +84,26 @@ export class DisertanteComponent implements OnInit {
   guardar( form: NgForm ) {
 
     if ( form.invalid ) {
+      
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Formulario no valido!'
+        //footer: '<a href="">Why do I have this issue?</a>'
+      })
       console.log('Formulario no válido');
       return;
     }
 
-    /*Swal.fire({
+    Swal.fire({
       title: 'Espere',
       text: 'Guardando información',
-      type: 'info',
+      icon: 'info',
       allowOutsideClick: false
-    });*/
+    });
 
-    //Swal.showLoading();
+    Swal.showLoading();
 
     let peticion: Observable<any>;
 
@@ -106,11 +116,11 @@ export class DisertanteComponent implements OnInit {
 
     peticion.subscribe( resp => {
 
-    /*Swal.fire({
-      title: this.carrera.descripcion,
+    Swal.fire({
+      title: this.disertante.nombre,
       text: 'Se actualizó correctamente',
-      type: 'success'
-    });*/
+      icon: 'success'
+    });
 
     });
 

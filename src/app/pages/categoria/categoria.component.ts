@@ -38,6 +38,13 @@ export class CategoriaComponent implements OnInit {
   guardar( form: NgForm ) {
 
     if ( form.invalid ) {
+       
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Formulario no valido!'
+        //footer: '<a href="">Why do I have this issue?</a>'
+      })
       console.log('Formulario no válido');
       return;
     }

@@ -28,20 +28,20 @@ export class CategoriasComponent implements OnInit {
 
 
   borrarCategoria( categoria: CategoriaModel, i: number ) {
-    /*Swal.fire({
+    Swal.fire({
       title: '¿Está seguro?',
       text: `Está seguro que desea borrar a ${ categoria.descripcion }`,
-      type: 'question',
+      icon: 'question',
       showConfirmButton: true,
       showCancelButton: true
-    }).then( resp => {*/
+    }).then( resp => {
 
-      //if ( resp.value ) {
+      if ( resp.value ) {
         this.categorias.splice(i, 1);
         this.categoriasService.borrarCategoria( categoria.id ).subscribe();
-     // }
+      }
 
-    //});
+    });
 
   }
 

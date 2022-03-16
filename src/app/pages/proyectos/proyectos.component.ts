@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProyectoModel } from '../../models/proyecto.model';
 import { ProyectosService } from '../../services/proyectos.service';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-proyectos',
   templateUrl: './proyectos.component.html',
@@ -29,20 +31,20 @@ export class ProyectosComponent implements OnInit {
 
   borrarProyecto( proyecto: ProyectoModel, i: number ) {
 
-    /*Swal.fire({
+    Swal.fire({
       title: '¿Está seguro?',
-      text: `Está seguro que desea borrar a ${ carrera.descripcion }`,
-      type: 'question',
+      text: `Está seguro que desea borrar a ${ proyecto.titulo }`,
+      icon: 'question',
       showConfirmButton: true,
       showCancelButton: true
-    }).then( resp => {*/
+    }).then( resp => {
 
-      //if ( resp.value ) {
+      if ( resp.value ) {
         this.proyectos.splice(i, 1);
         this.proyectosService.borrarProyecto( proyecto.id ).subscribe();
-      //}
+      }
 
-    //});
+    });
 
   }
 

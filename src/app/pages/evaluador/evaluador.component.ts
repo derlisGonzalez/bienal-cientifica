@@ -9,6 +9,8 @@ import { CarrerasService } from 'src/app/services/carreras.service';
 import { CriterioModel } from 'src/app/models/criterio.model';
 import { CriteriosService } from 'src/app/services/criterios.service';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-evaluador',
   templateUrl: './evaluador.component.html',
@@ -71,16 +73,23 @@ export class EvaluadorComponent implements OnInit {
 
   guardar(form: NgForm) {
     if (form.invalid) {
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Formulario no valido!'
+        //footer: '<a href="">Why do I have this issue?</a>'
+      })
       console.log('Formulario no válido');
       return;
     }
-    /*Swal.fire({
+    Swal.fire({
       title: 'Espere',
       text: 'Guardando información',
-      type: 'info',
+      icon: 'info',
       allowOutsideClick: false
-    });*/
-    //Swal.showLoading();
+    });
+    Swal.showLoading();
 
     let peticion: Observable<any>;
     this.evaluador.carrera = this.carrera
@@ -92,11 +101,11 @@ export class EvaluadorComponent implements OnInit {
     peticion.subscribe(resp => {
       this.actualizarCarrera(this.carrera, this.evaluador)
       console.log(resp)
-      /*Swal.fire({
-        title: this.carrera.descripcion,
+      Swal.fire({
+        title: this.evaluador.nombre,
         text: 'Se actualizó correctamente',
-        type: 'success'
-      });*/
+        icon: 'success'
+      });
     });
   }
 

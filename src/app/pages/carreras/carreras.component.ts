@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarrerasService } from '../../services/carreras.service';
 import { CarreraModel } from '../../models/carrera.model';
-//import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-carreras',
@@ -29,20 +29,20 @@ export class CarrerasComponent implements OnInit {
 
   borrarCarrera( carrera: CarreraModel, i: number ) {
 
-    /*Swal.fire({
+    Swal.fire({
       title: '¿Está seguro?',
       text: `Está seguro que desea borrar a ${ carrera.descripcion }`,
-      type: 'question',
+      icon: 'question',
       showConfirmButton: true,
       showCancelButton: true
-    }).then( resp => {*/
+    }).then( resp => {
 
-      //if ( resp.value ) {
+      if ( resp.value ) {
         this.carreras.splice(i, 1);
         this.carrerasService.borrarCarrera( carrera.id ).subscribe();
-      //}
+      }
 
-    //});
+    });
 
   }
 

@@ -160,9 +160,9 @@ export class ProyectoComponent implements OnInit {
 
   crearFormulario() {
     this.forma = this.fb.group({
-      id: ['', Validators.required],
+      id: [''],
       titulo: ['', Validators.required],
-      codigo: ['', [Validators.required, Validators.minLength(5)]],
+      codigo: ['', [Validators.required, Validators.minLength(2)]],
       disertante: [''],
       carrera: [''],
       evaluadores: [''],
@@ -170,6 +170,7 @@ export class ProyectoComponent implements OnInit {
       evaluador2: [''],
       evaluador3: [''],
       cuerpo: ['', [Validators.required, Validators.minLength(50)]],
+      totalPuntaje: [''],
       //email  : ['', [ Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')] ],
       //usuario : ['', , this.validadores.existeUsuario ],
       //pass1   : ['', Validators.required ],
@@ -212,7 +213,7 @@ export class ProyectoComponent implements OnInit {
       //footer: '<a href="">Why do I have this issue?</a>'
     })
     console.log('Formulario no válido');
-     return;
+    return;
    }
     Swal.fire({
       title: 'Espere',

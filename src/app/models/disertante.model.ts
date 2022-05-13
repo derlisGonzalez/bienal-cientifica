@@ -7,7 +7,10 @@ export class DisertanteModel {
     nombre?: string;
     carrera?: string;
     categoria?: string;
-    
+    documento?: string;
+    password?: string;
+    rol?: string = "disertante";
+    usuario?: string;
     /*carrera?: CarreraModel;
     categoria?: CategoriaModel;*/
 

@@ -16,6 +16,7 @@ import { ProyectosService } from 'src/app/services/proyectos.service';
 
 export class CalificarComponent implements OnInit {
 
+  puntos: number[] = [];
   public criterios: CriterioModel[] = [];
 
 
@@ -30,6 +31,7 @@ export class CalificarComponent implements OnInit {
 
   ngOnInit() {
     let valorTotal = this.proyecto.totalPuntaje;
+    //let valorRadioB = document.querySelector('input[value="inlineRadioOptions"]:checked').value;
     const id = this.route.snapshot.paramMap.get('id');
 
     if ( id !== 'nuevo' ) {
@@ -77,49 +79,29 @@ export class CalificarComponent implements OnInit {
         })*/
   }
 
-  guardarVotacion( form: NgForm ) {
+  /*onclick(prouser){
+    this.puntos.push(prouser.value);
+    prouser.value
+  }*/
+ 
 
-    if ( form.invalid ) {
-      console.log('Formulario no válido');
-      return;
-    }
+  onItemChange(value){
+    this.puntos.push(Number(value));
+    console.log(value);
 
-    /*Swal.fire({
-      title: 'Espere',
-      text: 'Guardando información',
-      type: 'info',
-      allowOutsideClick: false
-    });*/
+    console.log(this.puntos);
+ }
 
-    //Swal.showLoading();
-
-    let peticion: Observable<any>;
-
-    if ( this.proyecto.id ) {
-      //se agrega los los crierios en el proyecto sin las alificaciones
-      //this.proyecto.evaluadores = this.eva
-      peticion = this.proyectosService.crearProyecto( this.proyecto );
-
-    } else {
-      peticion = this.proyectosService.crearProyecto(this.proyecto );
-    }
-
-
-    peticion.subscribe( resp => {
-
-    /*Swal.fire({
-      title: this.carrera.descripcion,
-      text: 'Se actualizó correctamente',
-      type: 'success'
-    });*/
-
-    });
-
-    console.log(form);
-    console.log(this.proyecto);
-
+ subTotal() {
+  let suma = 0;
+  for (let index = 0; index < this.puntos.length; index++) {
+    suma += this.puntos[index];
   }
+ 
 
+  console.log("La suma es : ", suma);  
+
+ }
 
 
   guardar( form: NgForm ) {
@@ -129,6 +111,7 @@ export class CalificarComponent implements OnInit {
       return;
     }
 
+    this.subTotal();
     /*Swal.fire({
       title: 'Espere',
       text: 'Guardando información',

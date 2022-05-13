@@ -10,7 +10,8 @@ export class ProyectoModel {
     autor?: string;
     autor2?: string;
     estado?: boolean = false;
-    totalPuntaje?: number;
+    totalPuntaje?: number = 0;
+    promedio?: number = 0;
     evaluador1?: EvaluadorModel;
     evaluador2?: EvaluadorModel;
     evaluador3?: EvaluadorModel;

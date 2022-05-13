@@ -8,6 +8,11 @@ export class EvaluadorModel {
     nombre: string;
     carrera?: CarreraModel;
     criterios?: CriterioModel[]=[];
+    documento?: string;
+    password?: string;
+    rol?: string = "evaluador";
+    usuario?: string;
+    subtotal?: number = 0;
 
 
 }

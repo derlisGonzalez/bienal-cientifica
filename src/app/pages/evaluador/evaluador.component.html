@@ -18,26 +18,41 @@
 <div class="row animated fadeIn faster">
     <div class="col">
         <!-- se llama al metodo guardar de evaluador.componet.ts -->
-        <form (ngSubmit)="guardar( f )" #f="ngForm">
+        <form [formGroup]="forma" (ngSubmit)="guardar()">
 
             <div class="form-group">
                 <label>Firebase ID</label>
-                <input type="text" class="form-control" placeholder="Firebase ID" [(ngModel)]="evaluador.id" name="id" disabled="disabled">
+                <input type="text" class="form-control" placeholder="Firebase ID" [(ngModel)]="evaluador.id" [attr.disabled]="true" formControlName="id">
                 <small class="form-text text-muted">Este campo es autogenerado</small>
             </div>
 
 
             <div class="form-group">
                 <label>Nombre</label>
-                <input type="text" class="form-control" placeholder="Nombre del Evaluador" [(ngModel)]="evaluador.nombre" name="nombre" required>
+                <input id="nombre" type="text" class="form-control" (change)="pruebaKey()" placeholder="Nombre del Evaluador" [(ngModel)]="evaluador.nombre" formControlName="nombre">
             </div>
 
+            <div class="form-group">
+                <label>Usuario</label>
+                <input type="text" id="usuario" class="form-control" placeholder="Usuario" [(ngModel)]="evaluador.usuario" formControlName="usuario">
+            </div>
+
+            <div class="form-group">
+                <label>Documento</label>
+                <input type="text" class="form-control" placeholder="Documento del Evaluador" [(ngModel)]="evaluador.documento" formControlName="documento">
+            </div>
+
+            
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="text" class="form-control" placeholder="Password del Evaluador" [(ngModel)]="evaluador.password" formControlName="password">
+            </div>
 
             <div class="form-group row">
                 <label class="col-2 col-form-label">Carreras</label>
                 <div class="col-8" placeholder="Seleccione Carrera">
-
-                    <select class="form-control" [disabled]="carreras.length === 0" [(ngModel)]="carrera" name="carrera" required>
+                    <select class="form-control" [disabled]="carreras.length === 0" [(ngModel)]="carrera" formControlName="carrera">
                     <option *ngFor="let carrera of carreras" [ngValue]="carrera">
                             <!-- [value]="carrera.id"> -->
                       {{ carrera.descripcion }}

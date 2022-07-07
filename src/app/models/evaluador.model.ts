@@ -15,5 +15,6 @@ export class EvaluadorModel {
     subtotal?: number = 0;
 
 
+
 }
 

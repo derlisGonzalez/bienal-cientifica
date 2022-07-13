@@ -10,7 +10,7 @@ export class EvaluadorModel {
     criterios?: CriterioModel[]=[];
     documento?: string;
     password?: string;
-    rol?: string = "evaluador";
+    rol?: string;
     usuario?: string;
     subtotal?: number = 0;
 

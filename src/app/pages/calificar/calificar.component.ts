@@ -16,7 +16,7 @@ import { ProyectosService } from 'src/app/services/proyectos.service';
 
 export class CalificarComponent implements OnInit {
 
-  puntos: number[] = [];
+  puntos: CriterioModel[] = [];
   public criterios: CriterioModel[] = [];
 
 
@@ -85,17 +85,24 @@ export class CalificarComponent implements OnInit {
   }*/
  
 
-  onItemChange(value){
-    this.puntos.push(Number(value));
+  onItemChange(value: CriterioModel){
+
+    //verfificar que no este en el array por el id de criterio remover y colocar nuevamente
+    //this.puntos.pop
+    this.puntos.push(value);
     console.log(value);
 
     console.log(this.puntos);
+    
+    console.log(this.subTotal());
  }
 
  subTotal() {
   let suma = 0;
   for (let index = 0; index < this.puntos.length; index++) {
-    suma += this.puntos[index];
+    //suma += this.puntos[index.toString];
+
+    this.puntos.filter
   }
  
 

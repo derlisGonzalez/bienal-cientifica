@@ -1,4 +1,12 @@
 <app-header></app-header><br>
+<div class="row text-right">
+    <div class="col">
+        <button class="btn btn-danger" routerLink="/calificaciones">
+            <i class="fa fa-arrow-left"></i>
+            Regresar
+        </button>
+    </div>
+</div>
 <div>
     <h2>
         Calificar el proyecto: <small>{{ proyecto.titulo }}</small>
@@ -10,14 +18,7 @@
     <hr>
 </div>
 
-<div class="row text-right">
-    <div class="col">
-        <button class="btn btn-danger" routerLink="/calificaciones">
-            <i class="fa fa-arrow-left"></i>
-            Regresar
-        </button>
-    </div>
-</div>
+
 
 <div class="row animated fadeIn faster">
     <div class="col">
@@ -30,7 +31,7 @@
 
                 <!-- EVALUADOR 1 -->
                 <div class="text-center font-weight-bold">
-                    <p>Evaluador </p>{{ proyecto.evaluador1.nombre}}
+                    <p>Evaluador {{ proyecto.evaluador1.nombre}}</p>
                 </div>
                 <hr>
                 <!-- 
@@ -45,19 +46,39 @@
                         <label [(ngModel)]="proyecto.criterio" name="criterios" required>{{ criterio.descripcion }}{{criterio.puntajeAsignado}}</label>
                         <div class="text-right">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions{{criterio.id}}"
-                                    id="radio_0{{criterio.id}}" value=0 [(ngModel)]="criterio.puntajeAsignado" (change)="onItemChange(criterio)">
+                                <input class="form-check-input"
+                                       type="radio" 
+                                       name="inlineRadioOptions{{criterio.id}}"
+                                       id="radio_0{{criterio.id}}"
+                                       value=0
+                                       [(ngModel)]="criterio.puntajeAsignado"
+                                       (click)="removerObjeto(criterio)"
+                                       (change)="onItemChange(criterio)"
+                                       style="cursor: pointer;">
                                 <label class="form-check-label" for="radio_0{{criterio.id}}">0</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions{{criterio.id}}"
-                                    id="radio_1{{criterio.id}}" value=1 [(ngModel)]="criterio.puntajeAsignado" (change)="onItemChange(criterio)">
+                                <input class="form-check-input"
+                                       type="radio"
+                                       name="inlineRadioOptions{{criterio.id}}"
+                                       id="radio_1{{criterio.id}}"
+                                       value=1
+                                       [(ngModel)]="criterio.puntajeAsignado"
+                                       (click)="removerObjeto(criterio)"
+                                       (change)="onItemChange(criterio)"
+                                       style="cursor: pointer;">
                                 <label class="form-check-label" for="radio_1{{criterio.id}}">1</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions{{criterio.id}}"
-                                
-                                    id="radio_2{{criterio.id}}" value=2 [(ngModel)]="criterio.puntajeAsignado" (change)="onItemChange(criterio)">
+                                <input class="form-check-input"
+                                       type="radio"
+                                       name="inlineRadioOptions{{criterio.id}}"
+                                       id="radio_2{{criterio.id}}" 
+                                       value=2
+                                       [(ngModel)]="criterio.puntajeAsignado"
+                                       (click)="removerObjeto(criterio)"
+                                       (change)="onItemChange(criterio)"
+                                       style="cursor: pointer;">
                                 <label class="form-check-label" for="radio_2{{criterio.id}}">2</label>
                             </div>
                         </div>
@@ -67,7 +88,7 @@
 
                 <!-- EVALUADOR 2 -->
                 <div class="text-center font-weight-bold">
-                    <p>Evaluador </p>{{ proyecto.evaluador2.nombre}}
+                    <p>Evaluador {{ proyecto.evaluador2.nombre}}</p>
                 </div>
                 <hr>
                 <!-- 
@@ -106,7 +127,7 @@
 
                 <!-- EVALUADOR 3 -->
                 <div class="text-center font-weight-bold">
-                    <p>Evaluador </p>{{ proyecto.evaluador3.nombre}}
+                    <p>Evaluador {{ proyecto.evaluador3.nombre}}</p>
                 </div>
                 <hr>
                 <!-- 
@@ -143,6 +164,9 @@
             </div>
             <hr>
 
+            <div class="text-center">
+                <input type="text" disabled="disabled" [(ngModel)]="proyecto.evaluador1.subtotal">
+            </div>
             <div class="form-group text-center">
                  <button type="submit" class="btn btn-primary w-25">
                     <!-- <label [(ngModel)]="proyecto.evaluador1.subtotal" name="subtotal" for=""></label> -->
@@ -154,6 +178,7 @@
 
         <div class="row text-right">
             <div class="col">
+
                 <button class="btn btn-danger" routerLink="/calificaciones">
                     <i class="fa fa-arrow-left"></i>
                     Regresar

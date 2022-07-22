@@ -1,14 +1,6 @@
 <div class="container">
     <app-header></app-header><br>
 
-    <div>
-
-        <h1>Inicio</h1>
-
-    </div>
-
-
-
     <div class="card-columns">
 
         <div *ngFor="let proyecto of proyectos; let i = index" class="card" style="width: 18rem;">
@@ -17,7 +9,7 @@
                 <h1>{{ proyecto.autor }}</h1>
                 <h5 class="card-title">{{ proyecto.titulo }}</h5>
                 <p class="card-text">{{ proyecto.id }}</p>
-                <p class="btn btn-primary">{{ proyecto.estado }}</p>
+                <p class="btn btn-primary btn-block">{{ proyecto.estado }}</p>
 
                 <button [routerLink]="['/calificacion', proyecto.id ]"
                 type="button" class="btn btn-outline-primary btn-block">

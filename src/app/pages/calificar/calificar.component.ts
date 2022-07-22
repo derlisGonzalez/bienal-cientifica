@@ -16,6 +16,7 @@ import { ProyectosService } from 'src/app/services/proyectos.service';
 
 export class CalificarComponent implements OnInit {
 
+  puntosTem: CriterioModel[] = [];
   puntos: CriterioModel[] = [];
   public criterios: CriterioModel[] = [];
 
@@ -83,42 +84,104 @@ export class CalificarComponent implements OnInit {
     this.puntos.push(prouser.value);
     prouser.value
   }*/
- 
 
   onItemChange(value: CriterioModel){
 
     //verfificar que no este en el array por el id de criterio remover y colocar nuevamente
+    //Eliminar el último elemento de un Array
     //this.puntos.pop
-    this.puntos.push(value);
-    console.log(value);
 
-    console.log(this.puntos);
+    //AÑADIR el último elemento de un Array 
+    //this.puntos.push(value);
+
+    //Añadir un elemento al principio de un Array
+    //this.puntos.unshift(value);
+
+    //DESCOMENTAR------------------------------------
+    /*let result = this.puntos.filter((item,index)=>{
+      return this.puntos.indexOf(item) === index;
+    })
+    console.log(result); //[1,2,6,5,9,'33']*/
+
     
-    console.log(this.subTotal());
+
+    /*for (let index = 0; index < this.puntos.length; index++) {
+
+      if (value.id) {
+      
+      }
+      
+  
+      
+      this.puntos["id"]
+    }*/
+
+    
+    //console.log(value.puntajeAsignado);
+
+    //console.log(this.puntos);
+
+    //console.log(this.subTotal());
  }
+
+ removerObjeto(value: CriterioModel) {
+
+      //AÑADIR el último elemento de un Array 
+      this.puntosTem.push(value);
+
+      //Añadir un elemento al principio de un Array
+      //this.puntos.unshift(value);
+  
+      this.puntos = this.puntosTem.filter((item,index)=>{
+        return this.puntosTem.indexOf(item) === index;
+      })
+
+      console.log(this.puntos); 
+      
+
+
+
+
+      //const sumall = fruits.map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
+ }
+
+
 
  subTotal() {
   let suma = 0;
-  for (let index = 0; index < this.puntos.length; index++) {
-    //suma += this.puntos[index.toString];
 
-    this.puntos.filter
-  }
- 
+  this.puntos.forEach( function(punto){
+    suma    += Number(punto.puntajeAsignado);
+  })
+  console.log("Suma: ", suma);
 
-  console.log("La suma es : ", suma);  
+  //const suma = this.puntos.map(item => Number(item.puntajeAsignado)).reduce((prev, curr) => prev + curr, 0);
+  //console.log(suma);
+
+  //console.log(value.id);
+
+  /*for (let index = 0; index < this.puntos.length; index++) {
+    suma += Number(value);
+
+    //this.puntos["id"]
+  }*/
+
+  //console.log("La suma es : ", suma);  
 
  }
 
 
   guardar( form: NgForm ) {
 
+    this.subTotal();
+
     if ( form.invalid ) {
       console.log('Formulario no válido');
       return;
     }
 
-    this.subTotal();
+    //this.subTotal(1);
+
     /*Swal.fire({
       title: 'Espere',
       text: 'Guardando información',

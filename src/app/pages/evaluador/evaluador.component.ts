@@ -172,7 +172,6 @@ export class EvaluadorComponent implements OnInit {
       });
     }
     
-
     newCarrera.evaluadores.push(newEvaluador)
     let response = this.carrerasService.actualizarCarera(newCarrera)
     response.subscribe(resp =>{

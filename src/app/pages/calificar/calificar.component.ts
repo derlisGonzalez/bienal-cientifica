@@ -1,3 +1,5 @@
+import { EvaluadoresService } from './../../services/evaluadores.service';
+import { EvaluadorModel } from './../../models/evaluador.model';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -6,6 +8,8 @@ import { CriterioModel } from 'src/app/models/criterio.model';
 import { ProyectoModel } from 'src/app/models/proyecto.model';
 import { CriteriosService } from 'src/app/services/criterios.service';
 import { ProyectosService } from 'src/app/services/proyectos.service';
+
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-calificar',
@@ -18,6 +22,7 @@ export class CalificarComponent implements OnInit {
 
   puntosTem: CriterioModel[] = [];
   puntos: CriterioModel[] = [];
+  evaluador: EvaluadorModel;
   public criterios: CriterioModel[] = [];
 
 
@@ -28,15 +33,12 @@ export class CalificarComponent implements OnInit {
 
   constructor( private proyectosService: ProyectosService,
                private criteriosService: CriteriosService,
+               private evaluadoresService: EvaluadoresService,
                private route: ActivatedRoute) { }
 
   ngOnInit() {
-    let valorTotal = this.proyecto.totalPuntaje;
-    //let valorRadioB = document.querySelector('input[value="inlineRadioOptions"]:checked').value;
     const id = this.route.snapshot.paramMap.get('id');
-
     if ( id !== 'nuevo' ) {
-
       this.proyectosService.getProyecto( id )
         .subscribe( (resp: ProyectoModel) => {
           this.proyecto = resp;
@@ -44,9 +46,6 @@ export class CalificarComponent implements OnInit {
         });
 
     }
-
-    //this.cargarCategorias();
-
    
    
     this.criteriosService.getCriterios()
@@ -138,22 +137,61 @@ export class CalificarComponent implements OnInit {
 
       console.log(this.puntos); 
       
-
-
-
-
-      //const sumall = fruits.map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
  }
 
 
 
- subTotal() {
+ subTotal1() {
   let suma = 0;
-
   this.puntos.forEach( function(punto){
     suma    += Number(punto.puntajeAsignado);
   })
+
   console.log("Suma: ", suma);
+
+  this.proyecto.evaluador1.subtotal = suma;
+  this.proyecto.totalPuntaje += suma;
+  this.proyecto.evaluador1.estado = false;
+  if (this.proyecto.evaluador1.estado == false && this.proyecto.evaluador2.estado == false && this.proyecto.evaluador3.estado == false) {
+    this.proyecto.promedio = (this.proyecto.totalPuntaje / 3);
+    this.proyecto.estado = false;
+  }
+  
+
+  console.log(this.proyecto.evaluador1.subtotal);
+  
+  //const suma = this.puntos.map(item => Number(item.puntajeAsignado)).reduce((prev, curr) => prev + curr, 0);
+  //console.log(suma);
+
+  //console.log(value.id);
+
+  /*for (let index = 0; index < this.puntos.length; index++) {
+    suma += Number(value);
+
+    //this.puntos["id"]
+  }*/
+
+  console.log("La suma es : ", suma);  
+
+  
+ }
+
+ subTotal2() {
+  let suma = 0;
+  this.puntos.forEach( function(punto){
+    suma    += Number(punto.puntajeAsignado);
+  })
+
+  console.log("Suma: ", suma);
+
+  this.proyecto.evaluador2.subtotal = suma;
+  this.proyecto.totalPuntaje += suma;
+  this.proyecto.evaluador2.estado = false;
+  if (this.proyecto.evaluador1.estado == false && this.proyecto.evaluador2.estado == false && this.proyecto.evaluador3.estado == false) {
+    this.proyecto.promedio = (this.proyecto.totalPuntaje / 3);
+    this.proyecto.estado = false;
+  }
+  console.log(this.proyecto.evaluador2.subtotal);
 
   //const suma = this.puntos.map(item => Number(item.puntajeAsignado)).reduce((prev, curr) => prev + curr, 0);
   //console.log(suma);
@@ -168,36 +206,72 @@ export class CalificarComponent implements OnInit {
 
   //console.log("La suma es : ", suma);  
 
+  
  }
 
 
+ subTotal3() {
+  let suma = 0;
+  this.puntos.forEach( function(punto){
+    suma    += Number(punto.puntajeAsignado);
+  })
+
+  console.log("Suma: ", suma);
+
+  this.proyecto.evaluador3.subtotal = suma;
+  this.proyecto.totalPuntaje += suma;
+  this.proyecto.evaluador3.estado = false;
+
+  if (this.proyecto.evaluador1.estado == false && this.proyecto.evaluador2.estado == false && this.proyecto.evaluador3.estado == false) {
+    this.proyecto.promedio = (this.proyecto.totalPuntaje / 3);
+    this.proyecto.estado = false;
+  }
+  console.log(this.proyecto.evaluador3.subtotal);
+
+  //const suma = this.puntos.map(item => Number(item.puntajeAsignado)).reduce((prev, curr) => prev + curr, 0);
+  //console.log(suma);
+
+  //console.log(value.id);
+
+  /*for (let index = 0; index < this.puntos.length; index++) {
+    suma += Number(value);
+
+    //this.puntos["id"]
+  }*/
+
+  //console.log("La suma es : ", suma);  
+
+  
+ }
+
   guardar( form: NgForm ) {
 
-    this.subTotal();
-
-    if ( form.invalid ) {
+    if ( this.puntos.length < 14 ) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Calificación incompleta'
+        //footer: '<a href="">Why do I have this issue?</a>'
+      })
       console.log('Formulario no válido');
       return;
+
     }
 
-    //this.subTotal(1);
-
-    /*Swal.fire({
+    Swal.fire({
       title: 'Espere',
-      text: 'Guardando información',
-      type: 'info',
+      text: 'Calificación guardada',
+      icon: 'info',
       allowOutsideClick: false
-    });*/
+    });
 
     //Swal.showLoading();
 
     let peticion: Observable<any>;
-
     if ( this.proyecto.id ) {
-      //se agrega los los crierios en el proyecto sin las alificaciones
-      //this.proyecto.evaluadores = this.eva
+      //se agrega los los crierios en el proyecto sin las calificaciones
       peticion = this.proyectosService.actualizarProyecto( this.proyecto );
-
+      //peticion = this.proyectosService.actualizarSubTotal(this.proyecto.evaluador1.subtotal);
     } else {
       peticion = this.proyectosService.crearProyecto(this.proyecto );
     }

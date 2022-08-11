@@ -13,6 +13,7 @@ export class EvaluadorModel {
     rol?: string;
     usuario?: string;
     subtotal?: number = 0;
+    estado: boolean  = true;
 
 
 

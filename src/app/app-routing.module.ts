@@ -1,3 +1,4 @@
+import { AddUsuarioComponent } from './pages/add-usuario/add-usuario.component';
 import { ReporteCategoriasComponent } from './reportes/reporte-categorias/reporte-categorias.component';
 import { ReporteCriteriosComponent } from './reportes/reporte-criterios/reporte-criterios.component';
 import { ReporteCarrerasComponent } from './reportes/reporte-carreras/reporte-carreras.component';
@@ -60,6 +61,8 @@ const routes: Routes = [
 
   { path: 'usuarios', component: UsuariosComponent },
   { path: 'usuarios/:id', component: UsuariosComponent },
+
+  { path: 'addusuarios', component: AddUsuarioComponent },
 
   //REPORTES
   { path: 'lista-proyectos', component: ReporteProyectoComponent },

@@ -25,7 +25,8 @@ export class EvaluadorComponent implements OnInit {
   public criterios: CriterioModel[] = [];
   evaluador: EvaluadorModel = new EvaluadorModel();
 
-  constructor(private fb: FormBuilder,private evaluadoresService: EvaluadoresService,
+  constructor(private fb: FormBuilder,
+    private evaluadoresService: EvaluadoresService,
     private criteriosService: CriteriosService,
     private carrerasService: CarrerasService,
     private route: ActivatedRoute) {
@@ -111,7 +112,7 @@ export class EvaluadorComponent implements OnInit {
        criterioss: this.fb.array([
  
          this.initCriterios()
-         
+        
        ]),*/
       //pasatiempos: this.fb.array([])
     }, {

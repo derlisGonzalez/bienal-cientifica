@@ -40,27 +40,41 @@ export class ProyectosService {
 
 
   crearProyecto( proyecto: ProyectoModel ) {
-
     return this.http.post(`${ this.url }/proyectos.json`, proyecto)
-            .pipe(
-              map( (resp: any) => {
-                proyecto.id = resp.name;
-                return proyecto;
-              })
-            );
+      .pipe(
+        map( (resp: any) => {
+          proyecto.id = resp.name;
+          return proyecto;
+        })
+      );
 
   }
 
 
   actualizarProyecto( proyecto: ProyectoModel ){
-
     const proyectoTemp = {
       ...proyecto
     };
-
     delete proyectoTemp.id;
-
     return this.http.put(`${ this.url }/proyectos/${ proyecto.id }.json`, proyectoTemp);
+  }
+
+  actualizarSubTotal( subtotal: number ) {
+    const subTemp = {
+      subtotal
+    };
+    return this.http.put(`${ this.url }/proyectos/evaluador1/${ subtotal }.json`, subTemp);
+  }
+
+  actualizarEvaluador1( subtotal: number ) {
+
+    const proyectoTemp = {
+      subtotal
+    };
+
+    delete proyectoTemp.subtotal;
+
+    return this.http.put(`${ this.url }/proyectos.evaluador1.subtotal/${ subtotal }.json`, proyectoTemp);
   }
 
 
@@ -82,20 +96,12 @@ export class ProyectosService {
 
   }
 
+
+
   getProyecto( id: string ) {
 
     return this.http.get(`${ this.url }/proyectos/${ id }.json`);
 
-  }
-
-
-  obtenerMedicoPorId( id: string ) {
-
-    //const url = `${ base_url }/medicos/${ id }`;
-    //return this.http.get( url, this.headers )
-            //  .pipe(
-            //    map( (resp: {ok: boolean, medico: Medico }) => resp.medico )
-             // );
   }
 
 
@@ -181,5 +187,6 @@ export class ProyectosService {
     return proyectosArr;
 
   }*/
+
   
 }

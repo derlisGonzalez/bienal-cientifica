@@ -39,6 +39,7 @@ import { ReporteCarrerasComponent } from './reportes/reporte-carreras/reporte-ca
 import { VisualizarCarreraComponent } from './reportes/reporte-carreras/visualizar-carrera/visualizar-carrera.component';
 import { ReporteCriteriosComponent } from './reportes/reporte-criterios/reporte-criterios.component';
 import { ReporteCategoriasComponent } from './reportes/reporte-categorias/reporte-categorias.component';
+import { AddUsuarioComponent } from './pages/add-usuario/add-usuario.component';
 
 
 
@@ -77,6 +78,7 @@ import { ReporteCategoriasComponent } from './reportes/reporte-categorias/report
     VisualizarCarreraComponent,
     ReporteCriteriosComponent,
     ReporteCategoriasComponent,
+    AddUsuarioComponent,
   ],
   imports: [
     BrowserModule,

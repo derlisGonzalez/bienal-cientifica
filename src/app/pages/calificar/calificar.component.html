@@ -17,9 +17,9 @@
     </div>
 </div>
 <div class="row">
-    <h2>
+    <h4>
         Calificar el proyecto: <small>{{ proyecto.titulo }}</small>
-    </h2>
+    </h4>
     <hr>
     <h2>
         Codigo: <small>{{ proyecto.codigo }}</small>
@@ -46,8 +46,7 @@
                 <!-- 
                 SE OCULTARA LA ETIQUETA HTML 
                 SI EL EVALUADOR LOGEADO NO COINCIDE 
-                CON EL EVALUADOR CORRESPONDIENTE AL PROYECTO 
-                
+                CON EL EVALUADOR CORRESPONDIENTE AL PROYECTO
                 -->
 
                 <div *ngFor="let criterio of proyecto.evaluador1.criterios">
@@ -92,21 +91,14 @@
                     <hr>
                 </div>
 
-<!-- 
-                <label [(ngModel)]="proyecto.evaluador1.subtotal" name="subtotal" value=subTotal(proyecto.evaluador1.subtotal)>Sub total: {{proyecto.evaluador1.subtotal}}</label> -->
-
-
                 <!-- EVALUADOR 2 -->
                 <div class="text-center font-weight-bold">
                     <p>Evaluador {{ proyecto.evaluador2.nombre}}</p>
                 </div>
                 <hr>
-                <!-- 
-                SE OCULTARA LA ETIQUETA HTML 
+                <!--SE OCULTARA LA ETIQUETA HTML 
                 SI EL EVALUADOR LOGEADO NO COINCIDE 
-                CON EL EVALUADOR CORRESPONDIENTE AL PROYECTO 
-                
-                -->
+                CON EL EVALUADOR CORRESPONDIENTE AL PROYECTO -->
                 <div *ngFor="let criterio of proyecto.evaluador2.criterios">
                     <div class="form group">
                         <label [(ngModel)]="proyecto.criterio" name="criterios" required>{{ criterio.descripcion }}{{criterio.puntajeAsignado}}</label>
@@ -146,9 +138,6 @@
                                 <label class="form-check-label" for="radio_2{{criterio.id}}">2</label>
                             </div>
                         </div>
-                        
-                        
-
                     </div>
                     <hr>
                 </div>
@@ -163,7 +152,6 @@
                 SE OCULTARA LA ETIQUETA HTML 
                 SI EL EVALUADOR LOGEADO NO COINCIDE 
                 CON EL EVALUADOR CORRESPONDIENTE AL PROYECTO 
-                
                 -->
                 <div *ngFor="let criterio of proyecto.evaluador3.criterios">
                     <div class="form group">
@@ -243,7 +231,7 @@
         
         <pre>
             
-        <!-- {{proyecto | json}} -->
+        {{proyecto | json}} 
         
 
         </pre>

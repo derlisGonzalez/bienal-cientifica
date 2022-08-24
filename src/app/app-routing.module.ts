@@ -56,11 +56,8 @@ const routes: Routes = [
   { path: 'calificar', component: ModalCalificarComponent },
   { path: 'calificar/:id', component: ModalCalificarComponent },
 
-  { path: 'usuario', component: UsuarioComponent },
-  { path: 'usuario/:id', component: UsuarioComponent },
-
   { path: 'usuarios', component: UsuariosComponent },
-  { path: 'usuarios/:id', component: UsuariosComponent },
+  { path: 'usuario/:id', component: UsuarioComponent },
 
   { path: 'addusuarios', component: AddUsuarioComponent },
 

@@ -153,7 +153,9 @@ export class CalificarComponent implements OnInit {
   this.proyecto.totalPuntaje += suma;
   this.proyecto.evaluador1.estado = false;
   if (this.proyecto.evaluador1.estado == false && this.proyecto.evaluador2.estado == false && this.proyecto.evaluador3.estado == false) {
-    this.proyecto.promedio = (this.proyecto.totalPuntaje / 3);
+    let subtotal = (this.proyecto.totalPuntaje / 3);
+    let sub = subtotal.toFixed(2);
+    this.proyecto.promedio = Number(sub);
     this.proyecto.estado = false;
   }
   
@@ -188,7 +190,9 @@ export class CalificarComponent implements OnInit {
   this.proyecto.totalPuntaje += suma;
   this.proyecto.evaluador2.estado = false;
   if (this.proyecto.evaluador1.estado == false && this.proyecto.evaluador2.estado == false && this.proyecto.evaluador3.estado == false) {
-    this.proyecto.promedio = (this.proyecto.totalPuntaje / 3);
+    let subtotal = (this.proyecto.totalPuntaje / 3);
+    let sub = subtotal.toFixed(2);
+    this.proyecto.promedio = Number(sub);
     this.proyecto.estado = false;
   }
   console.log(this.proyecto.evaluador2.subtotal);
@@ -223,7 +227,9 @@ export class CalificarComponent implements OnInit {
   this.proyecto.evaluador3.estado = false;
 
   if (this.proyecto.evaluador1.estado == false && this.proyecto.evaluador2.estado == false && this.proyecto.evaluador3.estado == false) {
-    this.proyecto.promedio = (this.proyecto.totalPuntaje / 3);
+    let subtotal = (this.proyecto.totalPuntaje / 3);
+    let sub = subtotal.toFixed(2);
+    this.proyecto.promedio = Number(sub);
     this.proyecto.estado = false;
   }
   console.log(this.proyecto.evaluador3.subtotal);

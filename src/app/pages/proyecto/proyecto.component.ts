@@ -118,9 +118,10 @@ export class ProyectoComponent implements OnInit {
       this.carrera = c
       this.evaluadores = c.evaluadores
     })
-    this.forma.controls["evaluador1"].valueChanges.subscribe((e: EvaluadorModel) => {
-      this.proyecto.evaluador1 = this.getEvaluador(e)
-    })
+      this.forma.controls["evaluador1"].valueChanges.subscribe((e: EvaluadorModel) => {
+        this.proyecto.evaluador1 = this.getEvaluador(e)
+      })
+
     this.forma.controls["evaluador2"].valueChanges.subscribe((e: EvaluadorModel) => {
       this.proyecto.evaluador2 = this.getEvaluador(e)
     })
@@ -130,6 +131,7 @@ export class ProyectoComponent implements OnInit {
 
 
   }
+
   /*mostrarListado(){
     var lista='';
     for(var i=0; i<jugadores.length; i++){

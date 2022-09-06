@@ -14,6 +14,8 @@ export class EvaluadoresComponent implements OnInit {
   evaluadores: EvaluadorModel[] = [];
   cargando = false;
 
+  evaluador: EvaluadorModel = new EvaluadorModel();
+
   constructor( private evaluadoresService: EvaluadoresService ) { }
 
   ngOnInit()  {
@@ -21,7 +23,11 @@ export class EvaluadoresComponent implements OnInit {
     this.cargando = true;
     this.evaluadoresService.getEvaluadores()
       .subscribe( resp => {
-        console.log(resp);
+        // resp.forEach( function(punto){
+        //   suma    += Number(punto.puntajeAsignado);
+        // })
+        console.log(resp.forEach);
+
         this.evaluadores = resp;
         this.cargando = false;
       });

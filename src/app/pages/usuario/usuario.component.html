@@ -21,13 +21,13 @@
         <form [formGroup]="forma" (ngSubmit)="guardar()" >
 
             <div class="form-group">
-                <label>UID</label>
+                <label>ID</label>
                 <input class="form-control"
                        type="text"
-                       placeholder="UID"
-                       [(ngModel)]="usuario.uid"
+                       placeholder="ID"
+                       [(ngModel)]="evaluador.id"
                        [attr.disabled]="true"
-                       formControlName="uid">
+                       formControlName="id">
                 <small class="form-text text-muted">Este campo es autogenerado</small>
             </div>
 
@@ -37,98 +37,29 @@
                 <input class="form-control"
                        type="text"
                        placeholder="Nombre del Usuario"
-                       [(ngModel)]="usuario.nombre"
+                       [(ngModel)]="evaluador.nombre"
                        formControlName="nombre">
             </div>
 
-
+            
             <div class="form-group">
-                <label>Documento</label>
+                <label>Usuario</label>
                 <input class="form-control"
                        type="text"
-                       placeholder="Documento del Usuario"
-                       [(ngModel)]="usuario.documento"
-                       formControlName="documento">
+                       placeholder="Usuario"
+                       [(ngModel)]="evaluador.usuario"
+                       formControlName="usuario">
             </div>
+
 
             <div class="form-group">
                 <label>Password</label>
                 <input class="form-control"
                        type="text"
                        placeholder="Password del Usuario"
-                       [(ngModel)]="usuario.password"
+                       [(ngModel)]="evaluador.password"
                        formControlName="password">
             </div>
-
-
-            <div class="form-group row">
-                <label class="col-2 col-form-label">Categoria</label>
-                <div class="col-8">
-                    <div class="input-group">
-                        <select class="form-control"
-                            [(ngModel)]="usuario.categoria"
-                            formControlName="categoria">
-                            <option *ngFor="let categoria of categorias"
-                                    [value]="categoria.descripcion">
-                            <!-- [value]="carrera.id"> -->
-                            {{ categoria.descripcion }}
-                    </option>
-                  </select>
-                    </div>
-
-                    
-
-                </div>
-            </div>
-
-
-            <div class="form-group row">
-                <label class="col-2 col-form-label">Carrera</label>
-                <div class="col-8">
-                    <div class="input-group">
-                        <select class="form-control"
-                            [(ngModel)]="usuario.carrera"
-                            formControlName="carrera">
-                            <option *ngFor="let carrera of carreras"
-                                    [value]="carrera.descripcion">
-                            
-                            {{ carrera.descripcion }}
-                    </option>
-                  </select>
-                    </div>
-
-                    
-
-                </div>
-            </div>
-
-
-            <div class="form-group row">
-                <label class="col-2 col-form-label">Rol</label>
-                <div class="col-8">
-                    <div class="input-group">
-                        <select class="form-control"
-                            [(ngModel)]="usuario.rol"
-                            formControlName="rol">
-                            <!-- <option *ngFor="let rol of roles"
-                                    [value]="rol.descripcion">
-                           
-                            {{ rol.descripcion }}
-                    </option> -->
-                  </select>
-                    </div>
-
-                    
-                </div>
-            </div>
-
-
-
-
-  
-
-
-            
 
 
             <!-- 

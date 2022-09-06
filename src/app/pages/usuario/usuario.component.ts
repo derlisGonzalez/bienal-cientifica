@@ -17,6 +17,8 @@ import { Observable } from 'rxjs';
 import { CarrerasService } from 'src/app/services/carreras.service';
 import { CarreraModel } from 'src/app/models/carrera.model';
 
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-usuario',
@@ -33,7 +35,8 @@ export class UsuarioComponent implements OnInit {
   public carreras: CarreraModel[] = [];
   public disertanteSeleccionado: DisertanteModel;
   //public carreraSeleccionada: CarreraModel;
-  usuario: UsuarioModel = new UsuarioModel();
+  //usuario: UsuarioModel = new UsuarioModel();
+  evaluador: EvaluadorModel = new EvaluadorModel();
 
     constructor( private fb: FormBuilder,
       private proyectosService: ProyectosService,
@@ -115,32 +118,19 @@ export class UsuarioComponent implements OnInit {
 
       crearFormulario() {
         this.forma = this.fb.group({
-          uid  : ['', Validators.required ],
+          id  : ['' ],
           nombre  : ['', Validators.required ],
-          documento: ['', [Validators.required, Validators.minLength(10) ] ],
-          password  : ['' ],
-          categoria  : ['' ],
-          carrera  : ['' ],
-          rol  : ['' ],
+          //documento: ['', [Validators.required, Validators.minLength(10) ] ],
+          password  : ['', Validators.required],
+          usuario  : ['', Validators.required ],
+          //carrera  : ['' ],
+          //rol  : ['' ],
           //cuerpo  : ['', [ Validators.required, Validators.minLength(50) ]  ],
           //email  : ['', [ Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')] ],
           //usuario : ['', , this.validadores.existeUsuario ],
           //pass1   : ['', Validators.required ],
           //pass2   : ['', Validators.required ],
-         /* criterios: this.fb.group({
-    
-            el_expositor_seadecua_al_tiempo_estipulado: this.fb.group({
-              p1: [0, Validators.required ],
-              p2: [0, Validators.required ],
-              p3: [0, Validators.required ],
-            }),
-            
-          }),
-          criterioss: this.fb.array([
-    
-            this.initCriterios()
-            
-          ]),*/
+        
           //pasatiempos: this.fb.array([])
         },{
           //validators: this.validadores.passwordsIguales('pass1','pass2')
@@ -148,30 +138,39 @@ export class UsuarioComponent implements OnInit {
     
       }
     
-      initCriterios() {
-        return this.fb.group({
-          name: ['', Validators.required],
-          manufacturerName: ['', Validators.required]
-        })
-      }
+
     
       guardar( ) {
     
-        /*Swal.fire({
+        if (this.forma.invalid) {
+
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Formulario no valido!'
+            //footer: '<a href="">Why do I have this issue?</a>'
+          })
+          console.log('Formulario no válido');
+          return;
+        }
+    
+        this.evaluador.rol = "administrador";
+
+        Swal.fire({
           title: 'Espere',
           text: 'Guardando información',
-          type: 'info',
+          icon: 'info',
           allowOutsideClick: false
-        });*/
+        });
     
-        //Swal.showLoading();
+       // Swal.showLoading();
     
         let peticion: Observable<any>;
     
-        if ( this.usuario.uid ) {
-          peticion = this.usersService.actualizarUsuario( this.usuario );
+        if ( this.evaluador.id ) {
+          peticion = this.evaluadoresService.actualizarEvaluador( this.evaluador );
         } else {
-          peticion = this.usersService.crearUsuario(this.usuario );
+          peticion = this.evaluadoresService.crearEvaluador(this.evaluador );
         }
     
         peticion.subscribe( resp => {
@@ -184,9 +183,11 @@ export class UsuarioComponent implements OnInit {
     
         });
     
-        console.log();
-        console.log(this.usuario);
+       
+        console.log(this.evaluador);
         console.log(this.forma);
+
+        //window.location.reload();
       }
     
       // guardar( form: NgForm ) {

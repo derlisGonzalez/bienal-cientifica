@@ -72,9 +72,10 @@ export class EvaluadorComponent implements OnInit {
       });
   }
 
-  pruebaKey() {
+ 
+  /*thispruebaKey() {
     this.forma.get('nombre').setValue(this.forma.get('usuario').value);
-}
+  }*/
 
 
   setValorDefault(evaluador: EvaluadorModel) {
@@ -90,9 +91,9 @@ export class EvaluadorComponent implements OnInit {
       carrera: ['', [Validators.required]],
       //criterios: ['', [Validators.required, Validators.minLength(2)]],
       documento: ['', [Validators.required]],
-      password: [''],
+      password: ['', [Validators.required]],
       //rol: ['evaluador'],
-      usuario: [''],
+      usuario: ['', [Validators.required]],
       subtotal: [''],
       //cuerpo: ['', [Validators.required, Validators.minLength(50)]],
       //totalPuntaje: [''],
@@ -122,6 +123,7 @@ export class EvaluadorComponent implements OnInit {
   }
 
   guardar() {
+    
     if (this.forma.invalid) {
 
       Swal.fire({
@@ -133,6 +135,9 @@ export class EvaluadorComponent implements OnInit {
       console.log('Formulario no válido');
       return;
     }
+
+    this.evaluador.rol = "evaluador";
+
     Swal.fire({
       title: 'Espere',
       text: 'Guardando información',
@@ -157,6 +162,12 @@ export class EvaluadorComponent implements OnInit {
         icon: 'success'
       });
     });
+
+
+
+    console.log(this.forma);
+    window.location.reload();
+    //this.forma.reset({ id: ''});
   }
 
   actualizarCarrera(carrera: CarreraModel, evaluador: EvaluadorModel) {
